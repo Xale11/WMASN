@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme, theme as base } from '@chakra-ui/react'
 import ContextProvider from './context/ContextProvider.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.tsx'
@@ -14,8 +14,8 @@ import Projects from './pages/Projects.tsx'
 import ProjectPage from './pages/ProjectPage.tsx'
 
 const fonts = {
-  body: "Roboto",
-  heading: "Roboto"
+  Roboto: `'Roboto', ${base.fonts?.body}, sans-serif`,
+  RobotoHeading: `'Roboto', ${base.fonts?.heading}, sans-serif`
 }
 
 const theme = extendTheme({fonts})

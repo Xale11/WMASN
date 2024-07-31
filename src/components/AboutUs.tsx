@@ -37,7 +37,7 @@ const AboutUs = () => {
 //   )
 
 return (
-    <Box width={"100%"} height={"fit-content"} p={"2em 0em"} position={"relative"} display={"flex"} justifyContent={"center"} bg={"white"}>
+    <Box width={"100%"} height={"fit-content"} p={"2em 0em"} position={"relative"} display={"flex"} justifyContent={"center"} bg={"white"} fontFamily={"Roboto"}>
         {/* <Box position={"absolute"} top={"0%"} margin={"0 auto"} left={"0%"} right={"0%"} bg={"#FBFBFB"} width={"85%"} h={"80%"} borderRadius={"2em"} ></Box> */}
         <Box display={"flex"} width={"100%"} h={"100%"} flexDirection={"column"} justifyContent={"start"} alignItems={"center"} gap={"1em"}>
             <Heading size={"xl"} width={"50%"}>About Us</Heading>

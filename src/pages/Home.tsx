@@ -7,7 +7,7 @@ import MeetTheTeam from '../components/MeetTheTeam'
 
 const Home = () => {
   return (
-    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"}>
+    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} fontFamily={"myBody"}>
         <Navbar/>
         <HomeSlide/>
         <AboutUs/>

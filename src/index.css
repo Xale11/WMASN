@@ -13,6 +13,19 @@
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family:"Roboto";
+  src: url(./fonts/Roboto-Regular.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family:"Roboto-Italic";
+  src: url(./fonts/Roboto-BlackItalic.ttf);
+  font-style: normal;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;

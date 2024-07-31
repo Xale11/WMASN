@@ -3,16 +3,16 @@ import { IoPersonCircle } from "react-icons/io5";
 
 const MeetTheTeam = () => {
   return (
-    <Box width={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} marginBottom={"1em"}>
+    <Box width={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} marginBottom={"1em"} fontFamily={"Roboto"}>
         <Box width={"100%"} display={"flex"}  flexDirection={"column"} justifyContent={"start"} alignItems={"center"}>
-            <Heading size={"2xl"} color={"#bdbdbd"} margin={"0.5em 0em"}>Meet The Team</Heading>
+            <Heading size={"2xl"} color={"#bdbdbd"} margin={"0.5em 0em"} fontFamily={"Roboto"}>Meet The Team</Heading>
             
             <Box display={"flex"} bg={"#333333"} gap={"1em"} flexDir={"row"} justifyContent={"center"} alignItems={"center"} width={"100%"} padding={"1em 0em"} borderRadius={"0em"}>
                 <Box display={"flex"} flexDir={"row"} justifyContent={"start"} alignItems={"center"} width={"80%"}>
                     <Icon display={{base: "none", lg: "inline"}} as={IoPersonCircle} fontSize={"15em"} color={"#D9D9D9"}/>
                     <VStack>
                         <Box display={"flex"} justifyContent={"center"} color={"white"} alignItems={{base: "start", lg: "end"}} flexDir={{base: "column", lg: "row"}} w={"100%"} gap={{base: "0.25em", lg: "0.5em"}}>
-                            <Heading size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Moyo Adebayo</Heading>
+                            <Heading fontFamily={"Roboto"} size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Moyo Adebayo</Heading>
                             <Text fontSize={{base: "1em", lg: "1.75em"}}>- Lead Curator/Director</Text>
                         </Box>
                         <Text color={"white"} fontSize={{base: "0.8em", lg: "1em"}}>
@@ -29,7 +29,7 @@ const MeetTheTeam = () => {
                     <Icon display={{base: "none", lg: "inline"}} as={IoPersonCircle} fontSize={"15em"} color={"#D9D9D9"}/>
                     <VStack>
                         <Box display={"flex"} justifyContent={"center"} color={"black"} alignItems={{base: "start", lg: "end"}} flexDir={{base: "column", lg: "row"}} w={"100%"} gap={"0.5em"}>
-                            <Heading size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Tunmiji Osibodu</Heading>
+                            <Heading fontFamily={"Roboto"} size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Tunmiji Osibodu</Heading>
                             <Text fontSize={{base: "1em", lg: "1.75em"}}>- Curator/Cinematographer</Text>
                         </Box>
                         <Text color={"black"}>
@@ -44,7 +44,7 @@ const MeetTheTeam = () => {
                     <Icon display={{base: "none", lg: "inline"}} as={IoPersonCircle} fontSize={"15em"} color={"#D9D9D9"}/>
                     <VStack>
                         <Box display={"flex"} justifyContent={"center"} color={"white"} alignItems={{base: "start", lg: "end"}} flexDir={{base: "column", lg: "row"}} w={"100%"} gap={"0.5em"}>
-                            <Heading size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Bewaji Oysesanya</Heading>
+                            <Heading fontFamily={"Roboto"} size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Bewaji Oysesanya</Heading>
                             <Text fontSize={{base: "1em", lg: "1.75em"}}>- Curator</Text>
                         </Box>
                         <Text color={"white"}>
@@ -61,7 +61,7 @@ const MeetTheTeam = () => {
                     <Icon display={{base: "none", lg: "inline"}} as={IoPersonCircle} fontSize={"15em"} color={"#D9D9D9"}/>
                     <VStack>
                         <Box display={"flex"} justifyContent={"center"} color={"black"} alignItems={{base: "start", lg: "end"}} flexDir={{base: "column", lg: "row"}} w={"100%"} gap={"0.5em"}>
-                            <Heading size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Israel Taiwo</Heading>
+                            <Heading fontFamily={"Roboto"} size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Israel Taiwo</Heading>
                             <Text fontSize={{base: "1em", lg: "1.75em"}}>- Marketing Lead</Text>
                         </Box>
                         <Text color={"black"}>
@@ -76,7 +76,7 @@ const MeetTheTeam = () => {
                     <Icon display={{base: "none", lg: "inline"}} as={IoPersonCircle} fontSize={"15em"} color={"#D9D9D9"}/>
                     <VStack>
                         <Box display={"flex"} justifyContent={"center"} color={"white"} alignItems={{base: "start", lg: "end"}} flexDir={{base: "column", lg: "row"}} w={"100%"} gap={"0.5em"}>
-                            <Heading size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Paul Yakubu</Heading>
+                            <Heading fontFamily={"Roboto"} size={{base: "md", lg: "xl"}} fontWeight={"bold"} display={"inline"}>Paul Yakubu</Heading>
                             <Text fontSize={{base: "1em", lg: "1.75em"}}>- Curator</Text>
                         </Box>
                         <Text color={"white"}>
