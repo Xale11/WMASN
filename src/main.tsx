@@ -12,10 +12,12 @@ import Contacts from './pages/Contacts.tsx'
 import Fonts from './fonts/Fonts.tsx'
 import Projects from './pages/Projects.tsx'
 import ProjectPage from './pages/ProjectPage.tsx'
+import AboutUs from './pages/AboutUs.tsx'
 
 const fonts = {
   Roboto: `'Roboto', ${base.fonts?.body}, sans-serif`,
-  RobotoHeading: `'Roboto', ${base.fonts?.heading}, sans-serif`
+  RobotoLight: `'Roboto-Light', ${base.fonts?.heading}, sans-serif`,
+  RobotoBold: `'Roboto-Bold', ${base.fonts?.heading}, sans-serif`,
 }
 
 const theme = extendTheme({fonts})
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/contacts",
     element: <Contacts/>
+  },
+  {
+    path: "/about",
+    element: <AboutUs/>
   },
   {
     path: "/projects",

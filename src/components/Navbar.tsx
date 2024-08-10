@@ -45,9 +45,9 @@ const Navbar = () => {
                 </PopoverContent>
             </Popover>
             
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/about")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>ABOUT US</Text>
             <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/projects")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>PROJECTS</Text>
             <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/store")} padding={"0.5em"} borderTop={url === "/store" ? "2px solid white": ""} borderBottom={url === "/store" ? "2px solid white": ""}>STORE</Text>
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/contacts")} padding={"0.5em"} borderTop={url === "/contacts" ? "2px solid white": ""} borderBottom={url === "/contacts" ? "2px solid white": ""}>CONTACTS</Text>
         </Box>
 
         <Modal isOpen={isOpen} onClose={onClose}>
