@@ -2,7 +2,6 @@ import { Box } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import HomeSlide from '../components/HomeSlide'
 import Footer from '../components/Footer'
-import MeetTheTeam from '../components/MeetTheTeam'
 import HomeIntro from '../components/HomeIntro'
 
 const Home = () => {
@@ -11,7 +10,6 @@ const Home = () => {
         <Navbar/>
         <HomeSlide/>
         <HomeIntro/>
-        <MeetTheTeam/>
         <Footer/>
     </Box>
   )

@@ -20,8 +20,8 @@ const HomeIntro = () => {
                 <Heading size={"xl"} width={"50%"} fontFamily={"Roboto-Bold"}>About Us</Heading>
                 <Box width={"50%"} display={"flex"} alignItems={"start"} justifyContent={"center"} flexDirection={"column"} gap={"1em"} >
                     <Text whiteSpace={"pre-wrap"} fontFamily={"Roboto"}>{AboutUsIntro}</Text>
-                    <Box onClick={() => {navigate("/projects")}} borderRadius={"0em"} bg={"white"} border={"1px solid #333333"}letterSpacing={"3px"} display={"flex"} alignItems={"center"} justifyContent={"center"} padding={"0.5em 1em"} cursor={"pointer"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.5em 1.5em"}}>
-                        <Text>SEE OUR WORK</Text>
+                    <Box onClick={() => {navigate("/about")}} borderRadius={"0em"} bg={"white"} border={"1px solid #333333"}letterSpacing={"3px"} display={"flex"} alignItems={"center"} justifyContent={"center"} padding={"0.5em 1em"} cursor={"pointer"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.5em 1.5em"}}>
+                        <Text>LEARN MORE</Text>
                         <Image w={"2em"} src={Arrow} alt="arrow link"/>
                     </Box>
                 </Box>
