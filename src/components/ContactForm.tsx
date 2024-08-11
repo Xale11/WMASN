@@ -11,7 +11,7 @@ const ContactForm = () => {
   const [message, setMessage] = useState<string>("")
 
   return (
-    <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"Roboto"} justify={"space-between"} align={"center"}>
+    <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"Roboto"} justify={"space-between"} align={"center"} gap={{base: "2em", lg: "0em"}}>
       <Stack direction={"column"} align={{base: "center", lg: "start"}} justify={"center"} w={{base: "90%", lg: "40%"}} gap={"1em"} pl={{base: "0em", lg: "5em"}}>
         <Heading size={"2xl"} color={"#2c2c2c"} fontFamily={"Roboto-Light"} letterSpacing={"3px"} textAlign={{base: "center", lg: "start"}}>CONTACT OUR TEAM</Heading>
         <Text textAlign={{base: "center", lg: "start"}} fontFamily={"Roboto-Light"} color={"#2c2c2c"}>Connect with us to see how our designs can enhance your living or working spaces.</Text>
