@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <Box w={"100vw"} h={{base: "4em", md: "5em", lg: "6em"}} bg={"#2F3F89"} display={"flex"} alignItems={"center"} fontFamily={"Roboto"} position={"relative"} zIndex={3}>
-        <Box width={{base: "80%", sm: "25%", lg: "20%"}} h={"100%"} display={"flex"} alignItems={"center"} justifyContent={"center"}>
+        <Box onClick={() => {navigate("/")}} width={{base: "80%", sm: "25%", lg: "20%"}} h={"100%"} cursor={"pointer"} display={"flex"} alignItems={"center"} justifyContent={"center"}>
             <Image src={Logo} alt='Logo' objectFit='contain' w={{base: "250px", sm: "150px", lg: "250px"}}/>
         </Box>
         <Box width={{base: "20%", sm: "75%", lg: "80%"}}  h={"100%"} color={"white"} display={"flex"} alignItems={"center"} justifyContent={"space-around"} letterSpacing={"4px"}>
