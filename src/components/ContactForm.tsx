@@ -43,7 +43,7 @@ const ContactForm = () => {
 
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"calc(90% + 2em)"}>
               <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">MESSAGE</FormLabel>
-              <Input value={message} onChange={(e) => {setEmail(e.target.value)}} name="message" id="message" type={"text"} fontFamily={"Roboto"} placeholder="Hi there..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <Input value={message} onChange={(e) => {setMessage(e.target.value)}} name="message" id="message" type={"text"} fontFamily={"Roboto"} placeholder="Hi there..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
 
             <Box as="button" borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
