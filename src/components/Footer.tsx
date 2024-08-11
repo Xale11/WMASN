@@ -32,8 +32,9 @@ const Footer = () => {
               </PopoverBody>
           </PopoverContent>
         </Popover>
+        <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/about")}}>About Us</Text>
+        <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/projects")}}>Projects</Text>
         <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/store")}}>Store</Text>
-        <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/contacts")}}>Contacts</Text>
       </Box>
       <Box w={{base: "30%", lg: "20%"}} display={"flex"} flexDirection={"column"} gap={"1em"} alignItems={{base: "center", lg: "start"}}>
         <Heading size={"sm"} marginTop={{base: "0em", lg: "2em"}}>Contacts</Heading>
