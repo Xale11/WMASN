@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import HomeSlide from '../components/HomeSlide'
 import Footer from '../components/Footer'
 import HomeIntro from '../components/HomeIntro'
+import ContactForm from '../components/ContactForm'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Navbar/>
         <HomeSlide/>
         <HomeIntro/>
+        <ContactForm/>
         <Footer/>
     </Box>
   )
