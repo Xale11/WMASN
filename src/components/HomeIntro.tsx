@@ -18,7 +18,7 @@ const HomeIntro = () => {
             {/* <Box position={"absolute"} top={"0%"} margin={"0 auto"} left={"0%"} right={"0%"} bg={"#FBFBFB"} width={"85%"} h={"80%"} borderRadius={"2em"} ></Box> */}
             <Box display={"flex"} width={"100%"} h={"100%"} flexDirection={"column"} justifyContent={"start"} alignItems={"center"} gap={"1em"}>
                 <Heading size={"xl"} width={"50%"} fontFamily={"Roboto"} letterSpacing={"5px"}>ABOUT US</Heading>
-                <Box width={"50%"} display={"flex"} alignItems={"start"} justifyContent={"center"} flexDirection={"column"} gap={"1em"} >
+                <Box width={{base: "80%", md: "50%"}} display={"flex"} alignItems={{base: "center", lg: "start"}} justifyContent={"center"} flexDirection={"column"} gap={"1em"} >
                     <Text whiteSpace={"pre-wrap"} fontFamily={"Roboto"}>{AboutUsIntro}</Text>
                     <Box onClick={() => {navigate("/about")}} borderRadius={"0em"} bg={"white"} letterSpacing={"3px"} display={"flex"} alignItems={"center"} justifyContent={"center"} padding={"0.5em 1em"} cursor={"pointer"} color={"#2c2c2c"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.5em 1.5em"}}>
                         <Text>LEARN MORE</Text>
