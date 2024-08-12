@@ -16,9 +16,9 @@ const Gallery = () => {
   }, [])
 
   return (
-    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"} marginBottom={"2em"}>
+    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
         <Navbar/>
-        <Stack direction={"row"} w={"100%"} justify={"space-between"}>
+        <Stack direction={"row"} w={"100%"} justify={"space-between"} marginBottom={"2em"}>
           <Stack direction={"column"} w={"49%"} align={"end"} spacing={{base: "0.8em"}}>
             {images && images[0].map((img) => {
               return (
