@@ -1,5 +1,6 @@
 import { Box, Card, Heading } from "@chakra-ui/react"
 import ProjectCover from "../assets/ProjectCover.png"
+// import CardImage from "../assets/CardImage.jpg"
 import { useNavigate } from "react-router-dom"
 
 const ProjectCard = () => {
