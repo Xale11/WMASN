@@ -1,5 +1,5 @@
 import { Box, Button, FormLabel, Heading, HStack, Image, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import TeamCard from '../components/TeamCard'
 import { editTeamMember, removeTeamImg, TeamMember } from '../data/Team'
 

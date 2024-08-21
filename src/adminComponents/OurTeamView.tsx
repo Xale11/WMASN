@@ -1,6 +1,6 @@
 import { Box, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import { addTeamMember, TeamMember } from '../data/Team'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import EditMember from './EditMember'
 
 interface Props {
