@@ -4,11 +4,19 @@ import { FiPhone } from "react-icons/fi";
 import { IoMailOutline } from "react-icons/io5";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 
-const ContactForm = () => {
+interface Props {
+  ourEmail: string
+  number: string
+}
+
+const ContactForm = ({ourEmail, number}: Props) => {
 
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [message, setMessage] = useState<string>("")
+
+  // +447803 827743
+  // WMASN.Nigerian@gmail.com
 
   return (
     <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"Roboto"} justify={"space-between"} align={"center"} gap={{base: "2em", lg: "0em"}}>
@@ -17,11 +25,11 @@ const ContactForm = () => {
         <Text textAlign={{base: "center", lg: "start"}} fontFamily={"Roboto-Light"} color={"#2c2c2c"}>Connect with us to see how our designs can enhance your living or working spaces.</Text>
         <Box borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
             <Icon as={FiPhone}/>
-            <Text>+447803 827743</Text>
+            <Text>{number}</Text>
         </Box>
         <Box borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
             <Icon as={IoMailOutline}/>
-            <Text>WMAS.Nigerian@gmail.com</Text>
+            <Text>{ourEmail}</Text>
         </Box>
       </Stack>
       {/* Contact Form */}

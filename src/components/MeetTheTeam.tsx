@@ -1,8 +1,12 @@
 import { Box, Heading } from '@chakra-ui/react'
-import { teamInfo, TeamMember } from '../data/Team';
+import { TeamMember } from '../data/Team';
 import TeamCard from './TeamCard';
 
-const MeetTheTeam = () => {
+interface Props {
+    theTeam: TeamMember[]
+}
+
+const MeetTheTeam = ({theTeam}: Props) => {
 
     return (
         <Box width={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} marginBottom={"3em"} fontFamily={"Roboto"}>
@@ -11,7 +15,7 @@ const MeetTheTeam = () => {
 
                 <Box width={"50%"} h={"1px"} bg={"#2c2c2c"}></Box>
 
-                {teamInfo.map((member: TeamMember, i: number) => {
+                {theTeam.map((member: TeamMember, i: number) => {
                     return (<TeamCard member={member} flip={i % 2 === 0 ? false : true}/>)
                 })}
                 

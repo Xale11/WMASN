@@ -40,12 +40,12 @@ const Navbar = () => {
                     <PopoverBody bg={"#2F3F89"} borderRadius={"1em"} border={"1px solid white"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"0.5em"}>
                         <Text onClick={() => navigate("/artefacts/submitted")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Submitted Artefacts</Text>
                         <Divider/>
-                        <Text onClick={() => navigate("/artefacts/commissioned")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Submitted Artefacts</Text>
+                        <Text onClick={() => navigate("/artefacts/commissioned")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Commissioned Artefacts</Text>
                     </PopoverBody>
                 </PopoverContent>
             </Popover>
             
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/about")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>ABOUT US</Text>
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/about")} padding={"0.5em"} borderTop={url === "/about" ? "2px solid white": ""} borderBottom={url === "/about" ? "2px solid white": ""}>ABOUT US</Text>
             <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/projects")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>PROJECTS</Text>
             <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/store")} padding={"0.5em"} borderTop={url === "/store" ? "2px solid white": ""} borderBottom={url === "/store" ? "2px solid white": ""}>STORE</Text>
         </Box>

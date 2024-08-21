@@ -1,9 +1,34 @@
-import { Box, Card, Flex, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Heading, Text, useToast } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
 import ProjectCard from "../components/ProjectCard"
 import Footer from "../components/Footer"
+import { getProjects, Project } from "../data/Projects"
+import { useEffect, useState } from "react"
 
 const Projects = () => {
+
+  const [projList, setProjList] = useState<Project[]>([])
+
+  const toast = useToast()
+ 
+  const fetchProjects = async () => {
+    const res = await getProjects()
+    if (res === "error"){
+      toast({
+        status: "error",
+        title: "Error Fetching Data. Please Refresh.",
+        duration: 5000,
+        position: "top"
+      })
+    } else {
+      setProjList(res)
+    }
+  }
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+
   return (
     <Box w={"100vw"} display={"flex"} flexDir={"column"} gap={"1em"}>
         <Navbar/>
@@ -13,25 +38,11 @@ const Projects = () => {
         </Box>
         <Flex alignSelf={"center"} justifyContent={"start"} width={"calc(100% - 8em)"} flexWrap={"wrap"} rowGap={"1em"} columnGap={"1%"}>
            
-           <ProjectCard/>
+           {projList.map((project) => {
+            return (<ProjectCard project={project}/>)
+           })}
+           {/* <ProjectCard/> */}
 
-           <Card transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.7)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "24%"}} aspectRatio={"3 / 2"} bg="black">
-              <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"100%"} height={"45%"} bg={"#333333"} opacity={"95%"} marginBottom={"1em"}>
-                  <Heading fontFamily={"Roboto"} w={"90%"} size={"md"} opacity={"100%"} color={"white"}>New Project Coming Soon!</Heading>
-              </Box>
-          </Card>
-
-          <Card transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.7)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "24%"}} aspectRatio={"3 / 2"} bg="black">
-              <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"100%"} height={"45%"} bg={"#333333"} opacity={"95%"} marginBottom={"1em"}>
-                  <Heading fontFamily={"Roboto"} w={"90%"} size={"md"} opacity={"100%"} color={"white"}>New Project Coming Soon!</Heading>
-              </Box>
-          </Card>
-
-          <Card transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.7)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "24%"}} aspectRatio={"3 / 2"} bg="black">
-              <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"100%"} height={"45%"} bg={"#333333"} opacity={"95%"} marginBottom={"1em"}>
-                  <Heading fontFamily={"Roboto"} w={"90%"} size={"md"} opacity={"100%"} color={"white"}>New Project Coming Soon!</Heading>
-              </Box>
-          </Card>
         </Flex>
         <Footer/>
     </Box>

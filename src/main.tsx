@@ -11,8 +11,17 @@ import Store from './pages/Store.tsx'
 import Contacts from './pages/Contacts.tsx'
 import Fonts from './fonts/Fonts.tsx'
 import Projects from './pages/Projects.tsx'
-import ProjectPage from './pages/ProjectPage.tsx'
 import AboutUs from './pages/AboutUs.tsx'
+import Bag from './pages/Bag.tsx'
+import Cancel from './pages/Cancel.tsx'
+import Success from './pages/Success.tsx'
+import StoreAdmin from './adminPages/StoreAdmin.tsx'
+import AboutAdmin from './adminPages/AboutAdmin.tsx'
+import ProjectsAdmin from './adminPages/ProjectsAdmin.tsx'
+import HomeAdmin from './adminPages/HomeAdmin.tsx'
+import GalleryAdmin from './adminPages/GalleryAdmin.tsx'
+import Auth from './adminPages/Auth.tsx'
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const fonts = {
   Roboto: `'Roboto', ${base.fonts?.body}, sans-serif`,
@@ -20,54 +29,90 @@ const fonts = {
   RobotoBold: `'Roboto-Bold', ${base.fonts?.heading}, sans-serif`,
 }
 
+const queryClient = new QueryClient();
+
 const theme = extendTheme({fonts})
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>
+    element: <Home />,
   },
   {
     path: "/gallery",
-    element: <Gallery/>
+    element: <Gallery />,
   },
   {
     path: "/artefacts/submitted",
-    element: <Artefacts/>
+    element: <Artefacts />,
   },
   {
     path: "/artefacts/commissioned",
-    element: <Artefacts/>
+    element: <Artefacts />,
   },
   {
     path: "/store",
-    element: <Store/>
+    element: <Store />,
   },
   {
     path: "/contacts",
-    element: <Contacts/>
+    element: <Contacts />,
   },
   {
     path: "/about",
-    element: <AboutUs/>
+    element: <AboutUs />,
   },
   {
     path: "/projects",
-    element: <Projects/>
+    element: <Projects />,
   },
   {
-    path: "/project/:id",
-    element: <ProjectPage/>
+    path: "/bag",
+    element: <Bag />,
   },
-])
+  {
+    path: "/cancel",
+    element: <Cancel />,
+  },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "/admin",
+    element: <Auth />,
+  },
+  {
+    path: "/admin/home",
+    element: <HomeAdmin />,
+  },
+  {
+    path: "/admin/store",
+    element: <StoreAdmin />,
+  },
+  {
+    path: "/admin/about",
+    element: <AboutAdmin />,
+  },
+  {
+    path: "/admin/projects",
+    element: <ProjectsAdmin />,
+  },
+  {
+    path: "/admin/gallery",
+    element: <GalleryAdmin />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <Fonts/>
-      <ContextProvider>
-        <RouterProvider router={router}/>
-      </ContextProvider>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <Fonts/>
+        <ContextProvider>
+          <RouterProvider router={router}/>
+        </ContextProvider>
+      </ChakraProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
