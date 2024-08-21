@@ -59,7 +59,7 @@ export const editContactDets = async (data: HomePageInfo) => {
     await updateDoc(updateRef, {
       number: data.number,
       location: data.location,
-      email: data.location
+      email: data.email
     })
     
   } catch (error) {
