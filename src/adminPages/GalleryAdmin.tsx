@@ -48,7 +48,7 @@ const GalleryAdmin = () => {
     const res = await addGalleryImage({
       by: by,
       description: description,
-      src: imgRef.current?.files[0],
+      src: imgRef.current?.files,
       date: `${serverTimestamp()}`
     })
     if (res === "success"){
@@ -95,7 +95,7 @@ const GalleryAdmin = () => {
           <TabPanel display={"flex"} flexDirection={"column"} alignItems={"center"}>
             <Box mb={"1em"} as="button" onClick={onOpen} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} w={"13em"} padding={"0.75em 0em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{ bg: "#2F3F89" }}>
               <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>
-                ADD NEW PROJECT
+                ADD NEW GALLERY PHOTO
               </Text>
             </Box>
           <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
@@ -139,7 +139,7 @@ const GalleryAdmin = () => {
                     </Heading>
                     <HStack>
                       <Box display={"flex"} flexDirection={"column"}>
-                        <Input type="file" ref={imgRef}/>
+                        <Input type="file" ref={imgRef} multiple/>
                         <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
                           IMAGE 1 (Primary)
                         </Box>

@@ -34,7 +34,7 @@ const EditGallery = ({img}: Props) => {
     const res = await editGalleryImage({
       by: by,
       description: description,
-      src: imgRef.current?.files[0],
+      src: imgRef.current?.files,
       date: `${serverTimestamp()}`,
       filename: img.filename
     })
