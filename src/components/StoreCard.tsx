@@ -12,6 +12,24 @@ const StoreCard = ({item}: Props) => {
 
   const {onOpen, isOpen, onClose} = useDisclosure()
 
+  const days = 10 * (86400000) // days in firebase timestamp format. First number determines the days (ms)
+
+  const isNew = () => {
+    if (item?.createdAt){
+      const itemDate = parseInt(item?.createdAt) * 1000
+      const curTime = new Date().getTime() - days
+      if (curTime < itemDate){
+        return true
+      } else {
+        return false
+      }
+
+    } else {
+      return false
+    }
+    
+  }
+
   return (
     <Box
       onClick={onOpen}
@@ -45,16 +63,9 @@ const StoreCard = ({item}: Props) => {
           £{item.price.toFixed(2)}
         </Text>
       </Box>
-      <Box
-        p={"0.5em 1em"}
-        position={"absolute"}
-        bg={"#2c2c2c"}
-        color={"white"}
-        fontFamily={"Roboto"}
-        top={0}
-        right={0}>
+      {isNew() && <Box p={"0.5em 1em"} position={"absolute"} bg={"#2c2c2c"} color={"white"} fontFamily={"Roboto"} top={0} right={0}>
         NEW
-      </Box>
+      </Box>}
       <Modal onClose={onClose} isOpen={isOpen} size="4xl">
         <ModalOverlay />
         <ModalContent bg={"rgba(0, 0, 0, 0.0)"} boxShadow={"none"}>

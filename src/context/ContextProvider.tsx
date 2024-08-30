@@ -112,7 +112,7 @@ const ContextProvider = ({children}: Props) => {
         setBag([...bag])
       }else {
         const storedBag = JSON.parse(jsonBag);
-        console.log(storedBag);
+        // console.log(storedBag);
         setBag(storedBag)
       }
     }, [])

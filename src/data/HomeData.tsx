@@ -8,7 +8,6 @@ export interface HomePageInfo {
   number: string 
 }
 export const getHomePageInfo = async () => {
-  console.log("startloc")
   let res: HomePageInfo = {
     email: "",
     intro: "",

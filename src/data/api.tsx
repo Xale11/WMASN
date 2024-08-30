@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { LineItem } from "./StoreData";
 
-const stripe = new Stripe(`sk_test_51MaPAcD2tsopsvJeFud6vunqPIBv3x0Y2SC4uM8QFMcXH4gcSpyq0O5VpDXKRoTQiehS4VblLUEEIZKpYLYHMGnT009i4TZoKj`);
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET);
 
 const YOUR_DOMAIN = "http://localhost:5173/"
 

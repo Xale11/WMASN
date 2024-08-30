@@ -20,6 +20,7 @@ export interface Product {
   price: number;
   description: string;
   stock?: number
+  createdAt?: string
 }
 
 export interface FirebaseLineItem {
@@ -30,6 +31,7 @@ export interface FirebaseLineItem {
   img1: File,
   img2: File | undefined;
   stock?: number
+  createdAt?: string
 }
 
 export interface LineItem {
@@ -74,7 +76,8 @@ export const getStoreItems = async () => {
             description: data.description,
             img1: photos[0],
             img2: photos[1],
-            stock: data.stock
+            stock: data.stock,
+            createdAt: `${data?.createdAt?.seconds}`
         });
       }
       // console.log("success");
