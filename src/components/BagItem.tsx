@@ -11,6 +11,8 @@ interface Props {
 
 const BagItem = ({item}: Props) => {
 
+    const numbers = [1, 2, 3, 4, 5, 6, 7];
+
     const { editItemQuantity, removeFromBag } = useContext(ContextAPI) as ContextData;
 
     // The popover was not closing on blur. Needed this to simulate a click on the popover body to fis problem
@@ -56,90 +58,18 @@ const BagItem = ({item}: Props) => {
                   spacing={"0em"}
                   overflowY={"auto"}
                   ref={clickRef}>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    1
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    2
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    3
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    4
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    5
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    6
-                  </Text>
-                  <Text
-                    onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                      editItemQuantity(
-                        item,
-                        parseInt(e.currentTarget.textContent as string)
-                      );
-                    }}
-                    w={"100%"}
-                    textAlign={"center"}
-                    borderBottom={"1px solid lightgray"}>
-                    7
-                  </Text>
+                    {numbers.map((number) => (
+                      <Text
+                        key={number}
+                        onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                          editItemQuantity(item, parseInt(e.currentTarget.textContent as string));
+                        }}
+                        w={"100%"}
+                        textAlign={"center"}
+                        borderBottom={"1px solid lightgray"}>
+                        {number}
+                      </Text>
+                    ))}
                 </VStack>
               </PopoverBody>
             </PopoverContent>

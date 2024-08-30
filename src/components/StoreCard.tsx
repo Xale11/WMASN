@@ -1,4 +1,4 @@
-import { Box, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Heading, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react'
 import { Product } from '../data/StoreData'
 import { useState } from 'react'
 import ProductPage from '../pages/ProductPage'
@@ -37,12 +37,16 @@ const StoreCard = ({item}: Props) => {
       w={{ base: "90%", lg: "30%" }}
       h={"30em"}
       cursor={"pointer"}
+      pointerEvents={`${item.stock && item?.stock < 1 ? "none" : "auto"}`}
       onMouseEnter={() => {
         setHover(true);
       }}
       onMouseLeave={() => {
         setHover(false);
       }}>
+      {item.stock && item?.stock < 1 && <Stack position={"absolute"} h={"100%"} w={"100%"} align={"center"} justify={"center"} bg={"rgba(0, 0, 0, 0.5)"}>
+        <Heading color={"white"}>Sold Out</Heading>
+      </Stack>}
       <Box
         bg={"#F1F1F1"}
         w={"100%"}

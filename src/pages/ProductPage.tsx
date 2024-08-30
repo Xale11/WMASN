@@ -167,11 +167,7 @@ const ProductPage = ({ item }: Props) => {
           color={"#2c2c2c"}
           whiteSpace={"pre-wrap"}
           pb={"1em"}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo corporis
-          perferendis voluptatibus ab labore, quae dolores tempora voluptate
-          libero asperiores quasi impedit rem aperiam quis nesciunt modi?
-          Dolorem, iste. Facilis repudiandae omnis corporis non illo rem nobis
-          ab sequi ipsa?
+          {item.description}
         </Text>
       </VStack>
     </Stack>
