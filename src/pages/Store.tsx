@@ -21,6 +21,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import StoreGrid from "../components/StoreGrid";
 import { Product, getStoreItems } from "../data/StoreData";
 import { ContextAPI, ContextData } from "../context/ContextProvider";
+import { Helmet } from "react-helmet";
 const Store = () => {
   const [search, setSearch] = useState<string>("");
   const [storeItems, setStoreItems] = useState<Product[]>([]);
@@ -29,7 +30,7 @@ const Store = () => {
 
   const popoverRef = useRef<HTMLDivElement>(null);
 
-  const {numItems} = useContext(ContextAPI) as ContextData
+  const {numItems, getBag} = useContext(ContextAPI) as ContextData
 
   const fetchStoreItems = async () => {
     const data = await getStoreItems();
@@ -76,7 +77,6 @@ const Store = () => {
           }
           return 0;
         });
-        console.log(arr);
         setFilteredItems(arr);
         break;
 
@@ -112,6 +112,7 @@ const Store = () => {
     // const data = items
     // setItemList(data)
     fetchStoreItems();
+    getBag()
   }, []);
 
   console.log(fetchError);
@@ -126,6 +127,15 @@ const Store = () => {
       flexDirection={"column"}
       alignItems={"center"}
       gap={"1em"}>
+        <Helmet>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+        <meta 
+            name="description" 
+            content="Store page for architectural artefacts for sale. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
+        />
+        </Helmet>
       <Navbar />
       <Link as={ReactRouterLink} to={"/bag"}>
         <Box position={"absolute"} right={"2em"} >

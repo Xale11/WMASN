@@ -3,6 +3,7 @@ import { editGalleryImage, GalleryImage, removeGalleryImg } from '../data/Galler
 import { Box, Button, ButtonGroup, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import GalleryCard from '../components/GalleryCard'
 import { serverTimestamp } from 'firebase/firestore'
+import LoadButton from './LoadButton'
 
 interface Props {
   img: GalleryImage
@@ -15,12 +16,14 @@ const EditGallery = ({img}: Props) => {
   const [by, setBy] = useState<string>(img.by)
   const [description, setDescription] = useState<string>(img.description)
   const [remove, setRemove] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const imgRef = useRef<HTMLInputElement>(null)
 
   const toast = useToast()
 
   const updateGalleryImage = async () => {
+    setLoading(true)
     if (by === "" || description === "" || (imgRef.current?.files === null || imgRef.current?.files === undefined)){
       toast({
         status: "error",
@@ -29,9 +32,11 @@ const EditGallery = ({img}: Props) => {
         duration: 5000,
         position: "top"
       })
+      setLoading(false)
       return 
     }
     const res = await editGalleryImage({
+      id: img.id,
       by: by,
       description: description,
       src: imgRef.current?.files,
@@ -54,10 +59,11 @@ const EditGallery = ({img}: Props) => {
         position: "top"
       })
     }
+    setLoading(false)
   }
 
   const deleteGalleryImg = async () => {
-    const res = await removeGalleryImg(img.filename as string)
+    const res = await removeGalleryImg(img)
     if (res === "success"){
       onClose()
       toast({
@@ -92,7 +98,7 @@ const EditGallery = ({img}: Props) => {
     }
   }
 
-  console.log(img)
+  // console.log(img)
 
   return (
     <VStack>
@@ -126,9 +132,12 @@ const EditGallery = ({img}: Props) => {
                     <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
                     <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Image Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                   </Box>
-                  <Box as="button" onClick={updateGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                    <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
-                  </Box>
+                  <LoadButton loading={loading}>
+                    <Box as="button" onClick={updateGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                      <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+                    </Box>
+                  </LoadButton>
+                  
                 </VStack>
               </VStack>
             </ModalBody>

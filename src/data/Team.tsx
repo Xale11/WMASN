@@ -98,7 +98,6 @@ const getTeamImages = async (name: string) => {
         return "error"
     }
     const res1 = arr1.length === 0 ? undefined : await getDownloadURL(arr1[0]);
-    console.log(res1)
     return res1
 }
 

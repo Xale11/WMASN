@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Product } from "../data/StoreData";
+import { useContext, useEffect, useState } from "react";
+import { getShippingRates, Product, ShippingRate } from "../data/StoreData";
 import {
   Stack,
   VStack,
@@ -18,7 +18,19 @@ interface Props {
 }
 
 const ProductPage = ({ item }: Props) => {
+
+  const [shipping, setShipping] = useState<ShippingRate[]>()
+
   const toast = useToast();
+
+  const fetchShipping = async () => {
+    const res = await getShippingRates()
+    if (res === "error"){
+      await fetchShipping()
+    } else {
+      setShipping(res)
+    }
+  }
 
   const addedToBagToast = () => {
     toast({
@@ -31,38 +43,21 @@ const ProductPage = ({ item }: Props) => {
   };
 
   const buyNow = async () => {
-    // try {
-    //   const res = await fetch("http://localhost:3000/checkout", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       lineItems: [
-    //         {
-    //           price_data: {
-    //             currency: "gbp",
-    //             unit_amount: item.price * 100,
-    //             product_data: {
-    //               name: item.name,
-    //               images:
-    //                 item.img2 === undefined
-    //                   ? [item.img1]
-    //                   : [item.img1, item.img2],
-    //               description: item.description,
-    //             },
-    //           },
-    //           quantity: 1,
-    //         },
-    //       ],
-    //     }),
-    //   });
-    //   const url = await res.json();
-    //   console.log(url);
-    //   window.location.assign(url);
+    if (shipping === undefined){
+      toast({
+        status: "error",
+        title: "There was an error. Please Refresh the page",
+        position: "top",
+        isClosable: true,
+        duration: 3000
+      })
+      return
+    }
+    addToBag(item)
     try {
       const url = await goToCheckout([
             {
+              id: item.id,
               price_data: {
                 currency: "gbp",
                 unit_amount: item.price * 100,
@@ -77,7 +72,7 @@ const ProductPage = ({ item }: Props) => {
               },
               quantity: 1,
             },
-          ]);
+          ], shipping);
       window.location.assign(url);
     } catch (error) {
       toast({
@@ -91,6 +86,10 @@ const ProductPage = ({ item }: Props) => {
     }
   };
 
+  useEffect(() => {
+    fetchShipping()
+  }, [])
+
   const { addToBag } = useContext(ContextAPI) as ContextData;
 
   return (
@@ -98,6 +97,7 @@ const ProductPage = ({ item }: Props) => {
       direction={{ base: "column", sm: "row" }}
       w={"100%"}
       justify={"center"}>
+        
       <Box
         w={{ base: "100%", sm: "60%" }}
         aspectRatio={"1/1"}

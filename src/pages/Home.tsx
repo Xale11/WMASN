@@ -6,6 +6,7 @@ import HomeIntro from '../components/HomeIntro'
 import ContactForm from '../components/ContactForm'
 import { useEffect, useState } from 'react'
 import { getHomePageInfo } from '../data/HomeData'
+import {Helmet} from "react-helmet"
 
 
 const Home = () => {
@@ -39,6 +40,15 @@ const Home = () => {
 
   return (
     <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} fontFamily={"myBody"}>
+        <Helmet>
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+          <meta 
+              name="description" 
+              content="What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions. Welcome to the homepage" 
+          />
+        </Helmet>
         <Navbar/>
         <HomeSlide/>
         <HomeIntro intro={intro}/>

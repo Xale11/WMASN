@@ -1,39 +1,48 @@
 import Stripe from "stripe";
-import { LineItem } from "./StoreData";
+import { LineItem, ShippingRate } from "./StoreData";
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET);
 
-const YOUR_DOMAIN = "http://localhost:5173/"
+const YOUR_DOMAIN = "http://localhost:5173"
 
-export const goToCheckout = async (lineItems: LineItem[]) => {
+export const goToCheckout = async (lineItems: LineItem[], shipping: ShippingRate[]) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: lineItems,
+      line_items: lineItems.map((lineItem) => ({
+        price_data: {
+          currency: lineItem.price_data.currency,
+          product_data: {
+            name: lineItem.price_data.product_data.name,
+            images: lineItem.price_data.product_data.images,
+            description: lineItem.price_data.product_data.description,
+          },
+          unit_amount: lineItem.price_data.unit_amount,
+        },
+        quantity: lineItem.quantity
+      })),
       mode: "payment",
       success_url: `${YOUR_DOMAIN}/success`,
       cancel_url: `${YOUR_DOMAIN}/cancel`,
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: "fixed_amount",
-            fixed_amount: {
-              amount: 299,
-              currency: "gbp",
+      shipping_options: shipping.map((rate) => ({
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: {
+            amount: rate.price * 100,
+            currency: "gbp",
+          },
+          display_name: rate.name,
+          delivery_estimate: {
+            minimum: {
+              unit: "business_day",
+              value: rate.shipMin,
             },
-            display_name: "Standard Delivery",
-            delivery_estimate: {
-              minimum: {
-                unit: "business_day",
-                value: 2,
-              },
-              maximum: {
-                unit: "business_day",
-                value: 5,
-              },
+            maximum: {
+              unit: "business_day",
+              value: rate.shipMax,
             },
           },
         },
-      ],
+      })),
       shipping_address_collection: {
         allowed_countries: [
           "US", // United States

@@ -1,4 +1,4 @@
-import { doc, addDoc, collection, getDocs, query, serverTimestamp, updateDoc, deleteDoc } from "firebase/firestore";
+import { doc, addDoc, collection, getDocs, query, serverTimestamp, updateDoc, deleteDoc, increment } from "firebase/firestore";
 
 import Product1_1 from "../assets/Product1_1.png";
 import Product1_2 from "../assets/Product1_2.png";
@@ -35,6 +35,8 @@ export interface FirebaseLineItem {
 }
 
 export interface LineItem {
+  id?: string,
+  stock?: number,
   price_data: {
     currency: string;
     product_data: {
@@ -66,7 +68,6 @@ export const getStoreItems = async () => {
       const photos = await getPhotoItem(doc.id);
     //   console.log(photos)
       if (photos[0] === undefined){
-        console.log("error", doc.id)
         isError = true
       }else {
         res.push({
@@ -286,6 +287,15 @@ export const removeShippingRates = async (rate: ShippingRate) => {
     return "error"
   }
   return "success"
+}
+
+export const updateProductStock = async (items: LineItem[]) => {
+  for (const item of items){
+    const updateRef = doc(db, "storeItems", `${item.id}`)
+    await updateDoc(updateRef, {
+      stock: increment(-1 * item.quantity)
+    })
+  }
 }
 
 export const items: Product[] = [

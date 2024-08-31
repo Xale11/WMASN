@@ -9,7 +9,24 @@ import {
 import { Link as ReactRouterLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import {useEffect } from "react";
+import { updateProductStock } from "../data/StoreData";
+import { Helmet } from "react-helmet";
 const Success = () => {
+
+  useEffect(() => {
+    async function updateStock() {
+      const jsonBag = localStorage.getItem("wmasnShoppingBag");
+      const storedBag = JSON.parse(jsonBag ? jsonBag : '[]');
+      if (storedBag.length > 0){
+        await updateProductStock(storedBag)
+      }
+    }
+
+    updateStock()
+    localStorage.removeItem("wmasnShoppingBag")
+  }, [])
+
   return (
     <Box
       bg={"white"}
@@ -21,6 +38,15 @@ const Success = () => {
       flexDirection={"column"}
       alignItems={"center"}
       gap={"1em"}>
+        <Helmet>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+        <meta 
+            name="description" 
+            content="Cancel Page after buying a product" 
+        />
+        </Helmet>
       <Navbar />
       <Alert
         status="success"

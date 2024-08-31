@@ -7,6 +7,7 @@ export type ContextData = {
   addToBag: (item: Product) => void;
   editItemQuantity: (item: LineItem, quantity: number) => void;
   removeFromBag: (item: LineItem) => void;
+  getBag: () => void;
   subtotal: string;
   numItems: number;
   loggedIn: boolean;
@@ -27,7 +28,7 @@ const ContextProvider = ({children}: Props) => {
     const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
     const editItemQuantity = (item: LineItem, quantity: number) => {
-      console.log(item, quantity)
+      //console.log(item, quantity)
       const newBag = [...bag].map((lineItem) => {
         if (lineItem === item) {
           return { ...lineItem, quantity: quantity };
@@ -47,9 +48,16 @@ const ContextProvider = ({children}: Props) => {
     
     const addToBag = (item: Product) => {
       const lineItems = convertToLineItem(item)
-      console.log(lineItems)
+
       setBag(lineItems)
       localStorage.setItem("wmasnShoppingBag", JSON.stringify(lineItems))
+    }
+    
+    const getBag = () => {
+      const jsonBag = localStorage.getItem("wmasnShoppingBag");
+      const storedBag = JSON.parse(jsonBag ? jsonBag : '[]');
+      // console.log(storedBag);
+      setBag(storedBag)
     }
 
     const convertToLineItem = (item: Product) => {
@@ -69,6 +77,8 @@ const ContextProvider = ({children}: Props) => {
 
       if (newItem) {
         newBag.push({
+          id: item.id,
+          stock: item.stock,
           price_data: {
             currency: "gbp",
             unit_amount: item.price * 100,
@@ -128,7 +138,8 @@ const ContextProvider = ({children}: Props) => {
         editItemQuantity,
         removeFromBag,
         loggedIn,
-        setLoggedIn
+        setLoggedIn,
+        getBag
       }}>
       {children}
     </ContextAPI.Provider>

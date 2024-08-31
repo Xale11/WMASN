@@ -9,17 +9,40 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ContextAPI, ContextData } from "../context/ContextProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import BagItem from "../components/BagItem";
 import { goToCheckout } from "../data/api";
+import { getShippingRates, ShippingRate } from "../data/StoreData";
+import { Helmet } from "react-helmet";
 
 const Bag = () => {
 
   const toast = useToast()
 
-  const { bag, numItems, subtotal } = useContext(ContextAPI) as ContextData;
+  const { bag, numItems, subtotal, getBag } = useContext(ContextAPI) as ContextData;
+
+  const [shipping, setShipping] = useState<ShippingRate[]>()
+  
+  const fetchShipping = async () => {
+    const res = await getShippingRates()
+    if (res === "error"){
+      await fetchShipping()
+    } else {
+      setShipping(res)
+    }
+  }
 
   const checkout = async () => {
+    if (shipping === undefined){
+      toast({
+        status: "error",
+        title: "There was an error. Please Refresh the page",
+        position: "top",
+        isClosable: true,
+        duration: 3000
+      })
+      return
+    }
     if (bag.length === 0){
       toast({
         title: "Bag is empty",
@@ -31,13 +54,19 @@ const Bag = () => {
       })
     } else {
       try {
-        const url = await goToCheckout(bag)
+        const url = await goToCheckout(bag, shipping)
         window.location.assign(url)
       } catch (error) {
         alert("There was an error opening the cart. Please try again.");
       }
     }
   }
+
+  useEffect(() => {
+    fetchShipping()
+    getBag()
+  }, [])
+
 
   return (
     <Box
@@ -49,6 +78,15 @@ const Bag = () => {
       flexDirection={"column"}
       alignItems={"start"}
       gap={"1em"}>
+      <Helmet>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+        <meta 
+            name="description" 
+            content="The Cart of WMASN curated items. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
+        />
+        </Helmet>
       <Navbar />
       <Stack
         w={"100%"}

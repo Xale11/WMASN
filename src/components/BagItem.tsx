@@ -11,12 +11,11 @@ interface Props {
 
 const BagItem = ({item}: Props) => {
 
-    const numbers = [1, 2, 3, 4, 5, 6, 7];
-
     const { editItemQuantity, removeFromBag } = useContext(ContextAPI) as ContextData;
 
     // The popover was not closing on blur. Needed this to simulate a click on the popover body to fis problem
     const clickRef = useRef<HTMLDivElement>(null)
+    //console.log(item)
 
   return (
     <VStack
@@ -58,7 +57,7 @@ const BagItem = ({item}: Props) => {
                   spacing={"0em"}
                   overflowY={"auto"}
                   ref={clickRef}>
-                    {numbers.map((number) => (
+                    {Array.from({ length: item.stock ? item.stock : 7 }, (empty, i) => i + 1).map((number) => (
                       <Text
                         key={number}
                         onClick={(e: React.MouseEvent<HTMLDivElement>) => {

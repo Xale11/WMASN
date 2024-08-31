@@ -37,14 +37,14 @@ const StoreCard = ({item}: Props) => {
       w={{ base: "90%", lg: "30%" }}
       h={"30em"}
       cursor={"pointer"}
-      pointerEvents={`${item.stock && item?.stock < 1 ? "none" : "auto"}`}
+      pointerEvents={`${item.stock !== undefined && item?.stock < 1 ? "none" : "auto"}`}
       onMouseEnter={() => {
         setHover(true);
       }}
       onMouseLeave={() => {
         setHover(false);
       }}>
-      {item.stock && item?.stock < 1 && <Stack position={"absolute"} h={"100%"} w={"100%"} align={"center"} justify={"center"} bg={"rgba(0, 0, 0, 0.5)"}>
+      {item.stock !== undefined && item?.stock < 1 && <Stack position={"absolute"} h={"100%"} w={"100%"} align={"center"} justify={"center"} bg={"rgba(0, 0, 0, 0.5)"}>
         <Heading color={"white"}>Sold Out</Heading>
       </Stack>}
       <Box

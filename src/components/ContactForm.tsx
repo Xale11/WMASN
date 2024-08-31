@@ -35,7 +35,7 @@ const ContactForm = ({ourEmail, number}: Props) => {
       {/* Contact Form */}
       <Stack direction={"column"} w={{base: "90%", lg: "50%"}} h={"100%"} justify={"center"} color={"#2c2c2c"}>
         <FormControl w={"100%"}>
-          <Box as="form" action={"https://getform.io/f/amdpgvzb"} method="POST" h={"100%"} w={"100%"} display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"start"} gap={"1.5em"}>
+          <Box as="form" action={"https://getform.io/f/agdyovrb"} method="POST" h={"100%"} w={"100%"} display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"start"} gap={"1.5em"}>
 
             <Stack direction={{base: "column", lg: "row"}} w={"100%"} spacing={"2em"}>
               <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={{base: "100%", lg: "45%"}}>

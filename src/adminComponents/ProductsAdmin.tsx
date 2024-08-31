@@ -140,7 +140,7 @@ const ProductsAdmin = () => {
           }
           return 0;
         });
-        console.log(arr);
+        //console.log(arr);
         setFilteredItems(arr);
         break;
 

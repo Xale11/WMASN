@@ -6,6 +6,7 @@ import { serverTimestamp } from "firebase/firestore";
 import EditGallery from "../adminComponents/EditGallery";
 import { useNavigate } from "react-router-dom";
 import { ContextAPI, ContextData } from "../context/ContextProvider";
+import LoadButton from "../adminComponents/LoadButton";
 
 const GalleryAdmin = () => {
 
@@ -13,6 +14,7 @@ const GalleryAdmin = () => {
 
   const [by, setBy] = useState<string>("")
   const [description, setDescription] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>(false)
 
   const imgRef = useRef<HTMLInputElement>(null)
 
@@ -35,7 +37,8 @@ const GalleryAdmin = () => {
   }
 
   const addNewGalleryImage = async () => {
-    if (by === "" || description === "" || (imgRef.current?.files === null || imgRef.current?.files === undefined)){
+    setLoading(true)
+    if (by === "" || description === "" || ((imgRef.current?.files && imgRef.current?.files[0] == null) || imgRef.current?.files === undefined)){
       toast({
         status: "error",
         title: "Missing Input",
@@ -43,8 +46,16 @@ const GalleryAdmin = () => {
         duration: 5000,
         position: "top"
       })
+      setLoading(false)
       return 
     }
+    toast({
+      status: "info",
+      title: "Uploading Gallery Imags. Please Wait",
+      duration: 5000,
+      isClosable: true,
+      position: "top"
+    })
     const res = await addGalleryImage({
       by: by,
       description: description,
@@ -67,6 +78,7 @@ const GalleryAdmin = () => {
         position: "top"
       })
     }
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -80,6 +92,8 @@ const GalleryAdmin = () => {
   if (!loggedIn) {
     navigate("/admin")
   }
+
+  // console.log(images)
 
   return (
     <Box bg={"white"} w={"100vw"} h={"100vh"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
@@ -154,9 +168,12 @@ const GalleryAdmin = () => {
                         <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
                         <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Image Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                       </Box>
-                      <Box as="button" onClick={addNewGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                        <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
-                      </Box>
+                      <LoadButton loading={loading}>
+                        <Box as="button" onClick={addNewGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                          <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+                        </Box>
+                      </LoadButton>
+                      
                     </VStack>
                   </VStack>
                 </ModalBody>

@@ -1,0 +1,12 @@
+export const paginateData = (page: number, limit: number, length: number) => {
+  const startPoint = (page - 1) * limit
+  let endPoint = (page * limit) - 1
+  if (endPoint > length){
+    endPoint = length
+  }
+  let maxPage = length / limit
+  if (maxPage < 1){
+    maxPage = 1
+  }
+  return {start: startPoint, end: endPoint, maxPage: Math.floor(maxPage)}
+}

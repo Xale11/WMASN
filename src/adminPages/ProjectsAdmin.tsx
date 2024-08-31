@@ -87,7 +87,7 @@ const ProjectsAdmin = () => {
     navigate("/admin")
   }
 
-  console.log(projList)
+  //console.log(projList)
 
   return (
     <Box bg={"white"} w={"100vw"} h={"100vh"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>

@@ -2,6 +2,7 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Link } from "@chak
 import { Link as ReactRouterLink } from 'react-router-dom'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 
 const Cancel = () => {
   return (
@@ -15,6 +16,15 @@ const Cancel = () => {
       flexDirection={"column"}
       alignItems={"center"}
       gap={"1em"}>
+        <Helmet>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+        <meta 
+            name="description" 
+            content="Cancel Page when a payment fails." 
+        />
+        </Helmet>
       <Navbar />
       <Alert
         status="error"

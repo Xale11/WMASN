@@ -1,5 +1,6 @@
 import { Box, Heading, Text } from "@chakra-ui/react"
 import { Project } from "../data/Projects";
+import { Helmet } from "react-helmet";
 
 interface Props {
   project: Project
@@ -11,6 +12,15 @@ const ProjectPage = ({project}: Props) => {
 
   return (
     <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
+      <Helmet>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+        <meta 
+            name="description" 
+            content="Key details of our exhibiton. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
+        />
+        </Helmet>
         <Heading w={"90%"} size={"lg"} fontFamily={"Roboto"} textAlign={"center"}>What Makes a Space Nigeria? - Home Edition</Heading>
         <Text w={"80%"} h={"max-content"} whiteSpace={"pre-wrap"}>{project.textContent}</Text>
     </Box>

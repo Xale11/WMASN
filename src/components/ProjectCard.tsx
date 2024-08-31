@@ -11,7 +11,7 @@ const ProjectCard = ({project} : Props) => {
 
   const {onOpen, onClose, isOpen} = useDisclosure()
 
-    console.log(project)
+    //console.log(project)
 
   return (
     <Card onClick={onOpen} transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.7)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "24%"}} aspectRatio={"3 / 2"} backgroundImage={project.img} backgroundSize={"cover"} backgroundRepeat={"no-repeat"} backgroundPosition={"center"}>

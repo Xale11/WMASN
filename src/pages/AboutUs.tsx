@@ -10,6 +10,7 @@ import { LiaLongArrowAltDownSolid } from "react-icons/lia";
 import MeetTheTeam from "../components/MeetTheTeam";
 import { getAboutUsInfo, TeamMember } from "../data/Team";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AboutUs = () => {
     const [ourStory, setOurStory] = useState<string>("")
@@ -54,6 +55,15 @@ const AboutUs = () => {
 
     return (
         <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
+            <Helmet>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>WMASN | Nigerian Architecture, Artifacts & Spaces by Moyo Adebayo</title>
+                <meta 
+                    name="description" 
+                    content="Learn our story and meet the WMASN team. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
+                />
+                </Helmet>
             <Navbar/>
             
             <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
