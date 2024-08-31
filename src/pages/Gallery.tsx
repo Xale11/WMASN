@@ -134,7 +134,7 @@ const Gallery = () => {
         <Button onClick={previousPage} leftIcon={<IoChevronBack />}>
           Previous
         </Button>
-        {Array.from({ length: pageLimits.maxPage }, (empty, i) => i + 1).map((pageNum) => {
+        {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
           return (
             <Button onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
               {pageNum}

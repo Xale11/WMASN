@@ -57,7 +57,7 @@ const BagItem = ({item}: Props) => {
                   spacing={"0em"}
                   overflowY={"auto"}
                   ref={clickRef}>
-                    {Array.from({ length: item.stock ? item.stock : 7 }, (empty, i) => i + 1).map((number) => (
+                    {Array.from({ length: item.stock ? item.stock : 7 }, (_, i) => i + 1).map((number) => (
                       <Text
                         key={number}
                         onClick={(e: React.MouseEvent<HTMLDivElement>) => {
