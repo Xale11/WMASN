@@ -18,7 +18,7 @@ const GalleryCard = ({img}: Props) => {
             <Text textAlign={"left"} fontSize={"0.8em"} fontFamily={"Roboto-Light"}>{img?.description}</Text>
             {img?.by !== "" && <Text fontSize={"0.8em"} fontFamily={"Roboto-Light"}>Curated by: {img?.by}</Text>}
         </Box>}
-        <Box w={"100%"} h={"2em"} transition={"all 300ms ease-in-out"} display={{base: "block", "2xl": "none"}} >
+        <Box w={"100%"} h={"2em"} transition={"all 300ms ease-in-out"} display={{base: "block", "2xl": "none"}} mb={"1em"}>
             <Text textAlign={"left"} fontSize={"0.8em"} fontFamily={"Roboto-Light"}>{img?.description}</Text>
             {img?.by !== "" && <Text fontSize={"0.8em"} fontFamily={"Roboto-Light"}>Curated by: {img?.by}</Text>}
         </Box>

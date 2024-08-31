@@ -130,18 +130,18 @@ const Gallery = () => {
             })}
         </Stack>
       </Stack>
-      <ButtonGroup alignSelf={"center"}>
-        <Button onClick={previousPage} leftIcon={<IoChevronBack />}>
+      <ButtonGroup alignSelf={"center"} flexWrap={"wrap"}>
+        <Button size={"sm"} onClick={previousPage} leftIcon={<IoChevronBack />}>
           Previous
         </Button>
         {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
           return (
-            <Button onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
+            <Button size={"sm"} onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
               {pageNum}
             </Button>
           );
         })}
-        <Button onClick={nextPage} rightIcon={<IoChevronForward />}>
+        <Button size={"sm"} onClick={nextPage} rightIcon={<IoChevronForward />}>
           Next
         </Button>
       </ButtonGroup>
