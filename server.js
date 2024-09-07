@@ -17,10 +17,10 @@ const buildPath = path.join(__dirname, "dist");
 dotenvConfig();
 
 // AWS deployment
-const dotenvPath = path.resolve(__dirname, '../config4thqtr/app.env');
-dotenvConfig({ path: dotenvPath });
+// const dotenvPath = path.resolve(__dirname, '../config4thqtr/app.env');
+// dotenvConfig({ path: dotenvPath });
 
-app.use(express.static(buildPath))
+// app.use(express.static(buildPath))
 
 
 
