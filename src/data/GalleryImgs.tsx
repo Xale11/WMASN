@@ -45,11 +45,11 @@ export const getImages = async () => {
         console.error(error)
         return "error"
     }
-    return splitImages(res)
+    return res
 }
 
 
-const splitImages = (imgs: GalleryImage[]) => {
+export const splitImages = (imgs: GalleryImage[]) => {
     let firstArr = true
     const arr1: GalleryImage[] = []
     const arr2: GalleryImage[] = []
@@ -123,6 +123,7 @@ export const addGalleryImage = async (img: FirebaseGalleryImage) => {
   }
 
   export const removeGalleryImg = async (img: GalleryImage) => {
+    console.log(img)
     try {
         await deleteDoc(doc(db, "gallery", `${img.id}`));
         await deleteObject(ref(storage, img.path))

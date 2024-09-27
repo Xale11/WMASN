@@ -1,13 +1,13 @@
-import { Box, Button, ButtonGroup, Heading, Stack, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Heading, HStack, Image, Text, useToast, VStack } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import ComingSoon from '../components/ComingSoon'
 import { useEffect, useState } from "react";
 import { GalleryImage, getImages } from "../data/GalleryImgs";
-import GalleryCard from "../components/GalleryCard";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { paginateData } from "../util/Pagination";
 import { Helmet } from "react-helmet";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export interface PageData {
   start: number;
@@ -18,13 +18,13 @@ const Gallery = () => {
 
   const toast = useToast()
 
-  const [images, setImages] = useState<GalleryImage[][]>([[],[]]);
+  const [images, setImages] = useState<GalleryImage[]>([]);
   // const [paginatedImages, setPaginatedImages] = useState<GalleryImage[][]>([[],[]]);
   const [page, setPage] = useState<number>(1); // current page number
   const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 4, maxPage: 1 });
 
   const setPageView = (num: number) => {
-    const pageData = paginateData(num, 5, images[0].length);
+    const pageData = paginateData(num, 4, images.length);
     setPage(num);
     setPageLimits(pageData);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -89,52 +89,30 @@ const Gallery = () => {
             content="A display of our Exhibitions experiences and curated Artefacts. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
         />
         </Helmet>
-      <Stack
-        direction={"row"}
-        w={"100%"}
-        justify={"space-between"}
-        marginBottom={"2em"}>
-        <Stack
-          direction={"column"}
-          w={"49%"}
-          align={"end"}
-          spacing={{ base: "0.8em" }}>
-          {images &&
-            images[0].slice(pageLimits.start, pageLimits.end).map((img) => {
-              return <GalleryCard img={img} />;
-            })}
-        </Stack>
-
-        <Stack
-          direction={"column"}
-          w={"49%"}
-          align={"start"}
-          spacing={{ base: "0.8em" }}>
-          <Stack
-            direction={"column"}
-            w={{ base: "100%", xl: "50%" }}
-            h={{ base: "30vh", lg: "35vh" }}
-            align={"center"}
-            justify={"center"}
-            spacing={"1.5em"}>
-            <Heading size={"md"} fontFamily={"Roboto"} letterSpacing={"5px"}>
-              GALLERY
-            </Heading>
-            <Text fontFamily={"Roboto-Light"} textAlign={"center"}>
-              This is a collection of artwork that we have curated over time
-            </Text>
-          </Stack>
-          {images &&
-            images[1].slice(pageLimits.start, pageLimits.end).map((img) => {
-              return <GalleryCard img={img} />;
-            })}
-        </Stack>
-      </Stack>
-      <ButtonGroup alignSelf={"center"} flexWrap={"wrap"}>
+      <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
+        <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>Gallery</Heading>
+        <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>This is a collection of artwork that we have curated over time</Text>
+      </VStack>  
+      <HStack w={"100%"} justify={"center"} flexWrap={"wrap"} rowGap={"2em"}>
+        {images.slice(pageLimits.start, pageLimits.end).map((image) => {
+          return (
+          <VStack w={{ base: "90%", lg: "22%" }} aspectRatio={"1/1"} justify={"center"} spacing={0}>
+            <Box w={"100%"} h={"93%"}>
+              <Image as={LazyLoadImage} loading='lazy' src={image.src} w={"100%"} h={"100%"} objectFit={"contain"} alt='Image of an artefact'/>
+            </Box>
+            <Box w={"100%"} h={"7%"} textAlign={"center"} letterSpacing={"3px"}>
+              <Text>{image.description}</Text>
+            </Box>
+          </VStack>
+          )
+        })}
+      </HStack>
+      <ButtonGroup alignSelf={"center"} flexWrap={"wrap"} mt={"2em"}>
         <Button size={"sm"} onClick={previousPage} leftIcon={<IoChevronBack />}>
-          Previous
+          <Text display={{base: "none", md: "inline"}}>Previous</Text>
         </Button>
         {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
+          if (pageNum < page + 3 && pageNum > page - 3 && pageNum > 0 && pageNum <= pageLimits.maxPage)
           return (
             <Button size={"sm"} onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
               {pageNum}
@@ -142,7 +120,7 @@ const Gallery = () => {
           );
         })}
         <Button size={"sm"} onClick={nextPage} rightIcon={<IoChevronForward />}>
-          Next
+        <Text display={{base: "none", md: "inline"}}>Next</Text>
         </Button>
       </ButtonGroup>
       <Footer />

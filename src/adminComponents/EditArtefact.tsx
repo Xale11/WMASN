@@ -1,28 +1,29 @@
-import { useRef, useState } from 'react'
-import { editGalleryImage, GalleryImage, removeGalleryImg } from '../data/GalleryImgs'
 import { Box, Button, ButtonGroup, FormLabel, Heading, HStack, Image, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
-import { serverTimestamp } from 'firebase/firestore'
+import { useRef, useState } from 'react'
 import LoadButton from './LoadButton'
+import { GalleryImage } from '../data/GalleryImgs'
+import { editArtefactImage, removeArtefactImg } from '../data/Artefacts'
+import { serverTimestamp } from 'firebase/firestore'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface Props {
   img: GalleryImage
+  src: "commissioned" | "submitted"
 }
 
-const EditGallery = ({img}: Props) => {
+const EditArtefact = ({img, src}: Props) => {
 
-  const {onOpen, isOpen, onClose} = useDisclosure()
+  const toast = useToast()
+  const {onOpen, onClose, isOpen} = useDisclosure()
 
-  const [by, setBy] = useState<string>(img.by)
-  const [description, setDescription] = useState<string>(img.description)
-  const [remove, setRemove] = useState<boolean>(false)
+  const [by, setBy] = useState<string>(`${img.by}`)
+  const [description, setDescription] = useState<string>(`${img.description}`)
   const [loading, setLoading] = useState<boolean>(false)
+  const [remove, setRemove] = useState<boolean>(false)
 
   const imgRef = useRef<HTMLInputElement>(null)
 
-  const toast = useToast()
-
-  const updateGalleryImage = async () => {
+  const updateArtefactImage = async () => {
     setLoading(true)
     if (by === "" || description === "" || (imgRef.current?.files === null || imgRef.current?.files === undefined)){
       toast({
@@ -35,7 +36,7 @@ const EditGallery = ({img}: Props) => {
       setLoading(false)
       return 
     }
-    const res = await editGalleryImage({
+    const res = await editArtefactImage(src, {
       id: img.id,
       by: by,
       description: description,
@@ -47,14 +48,14 @@ const EditGallery = ({img}: Props) => {
       onClose()
       toast({
         status: "success",
-        title: "Edited Gallery Image",
+        title: "Edited Artefact Image",
         duration: 5000,
         position: "top"
       })
     } else {
       toast({
         status: "error",
-        title: "Error Editing Gallery Photo. Try Again.",
+        title: "Error Editing Artefact Photo. Try Again.",
         duration: 5000,
         position: "top"
       })
@@ -62,20 +63,20 @@ const EditGallery = ({img}: Props) => {
     setLoading(false)
   }
 
-  const deleteGalleryImg = async () => {
-    const res = await removeGalleryImg(img)
+  const deleteArtefactImg = async () => {
+    const res = await removeArtefactImg(src, img)
     if (res === "success"){
       onClose()
       toast({
         status: "success",
-        title: "Gallery Photo Removed",
+        title: "Artefact Photo Removed",
         duration: 5000,
         position: "top"
       })
     } else {
       toast({
         status: "error",
-        title: "Error Removing Gallery Photo. Try Again.",
+        title: "Error Removing Artefact Photo. Try Again.",
         duration: 5000,
         position: "top"
       })
@@ -94,11 +95,9 @@ const EditGallery = ({img}: Props) => {
       })
       setRemove(true)
     } else {
-        await deleteGalleryImg()
+        await deleteArtefactImg()
     }
   }
-
-  // console.log(img)
 
   return (
     <VStack w={{ base: "90%", md: "40%", lg: "30%", xl: "22%" }} aspectRatio={"1/1"} >
@@ -110,7 +109,7 @@ const EditGallery = ({img}: Props) => {
         <Box w={"100%"} h={"90%"}>
           <Image as={LazyLoadImage} loading='lazy' src={img.src} w={"100%"} h={"100%"} objectFit={"contain"} alt='Image of an artefact'/>
         </Box>
-        <Box w={"100%"} h={"10%"} textAlign={"center"}>
+        <Box w={"100%"} h={"10%"} textAlign={"center"} >
           <Text>By: {img.by}</Text>
           <Text>Desc: {img.description}</Text>
         </Box>
@@ -121,7 +120,7 @@ const EditGallery = ({img}: Props) => {
             <ModalBody>
               <VStack w={"100%"}>
                 <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
-                  EDIT GALLERY
+                  EDIT ARTEFACT
                 </Heading>
                 <HStack>
                   <Box display={"flex"} flexDirection={"column"}>
@@ -141,7 +140,7 @@ const EditGallery = ({img}: Props) => {
                     <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Image Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                   </Box>
                   <LoadButton loading={loading}>
-                    <Box as="button" onClick={updateGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                    <Box as="button" onClick={updateArtefactImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
                       <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
                     </Box>
                   </LoadButton>
@@ -155,4 +154,4 @@ const EditGallery = ({img}: Props) => {
   )
 }
 
-export default EditGallery
+export default EditArtefact

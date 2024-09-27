@@ -1,4 +1,4 @@
-import { Box, Heading, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure, useToast, Modal, ModalBody, ModalContent, ModalOverlay, VStack, HStack, Input, FormLabel} from "@chakra-ui/react";
+import { Box, Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure, useToast, Modal, ModalBody, ModalContent, ModalOverlay, VStack, HStack, Input, FormLabel, ButtonGroup, Button} from "@chakra-ui/react";
 import NavbarAdmin from "../adminComponents/NavbarAdmin";
 import { addGalleryImage, GalleryImage, getImages } from "../data/GalleryImgs";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -7,6 +7,9 @@ import EditGallery from "../adminComponents/EditGallery";
 import { useNavigate } from "react-router-dom";
 import { ContextAPI, ContextData } from "../context/ContextProvider";
 import LoadButton from "../adminComponents/LoadButton";
+import { PageData } from "../pages/Gallery";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { paginateData } from "../util/Pagination";
 
 const GalleryAdmin = () => {
 
@@ -15,10 +18,13 @@ const GalleryAdmin = () => {
   const [by, setBy] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
+  const [page, setPage] = useState<number>(1); // current page number
+  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 8, maxPage: 1 });
+
 
   const imgRef = useRef<HTMLInputElement>(null)
 
-  const [images, setImages] = useState<GalleryImage[][]>([]);
+  const [images, setImages] = useState<GalleryImage[]>([]);
 
   const toast = useToast()
 
@@ -32,6 +38,7 @@ const GalleryAdmin = () => {
         position: "top"
       })
     } else {
+      // const res = splitImages(unsplitRes)
       setImages(res)
     }
   }
@@ -51,7 +58,7 @@ const GalleryAdmin = () => {
     }
     toast({
       status: "info",
-      title: "Uploading Gallery Imags. Please Wait",
+      title: "Uploading Gallery Images. Please Wait",
       duration: 5000,
       isClosable: true,
       position: "top"
@@ -80,6 +87,35 @@ const GalleryAdmin = () => {
     }
     setLoading(false)
   }
+
+  const setPageView = (num: number) => {
+    const pageData = paginateData(num, 8, images.length);
+    setPage(num);
+    setPageLimits(pageData);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const nextPage = () => {
+    if (page === pageLimits.maxPage) {
+      return;
+    } else {
+      setPage((prev) => prev + 1);
+      setPageView(page + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (page === 1) {
+      return;
+    } else {
+      setPage((prev) => prev - 1);
+      setPageView(page - 1);
+    }
+  };
+
+  useEffect(() => {
+    setPageView(1)
+  }, [images])
 
   useEffect(() => {
     fetchGalleryInfo()
@@ -112,44 +148,34 @@ const GalleryAdmin = () => {
                 ADD NEW GALLERY PHOTO
               </Text>
             </Box>
-          <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
-            <Stack direction={"row"} w={"100%"} justify={"space-between"} marginBottom={"2em"}>
-              <Stack direction={"column"} w={"49%"} align={"end"} spacing={{ base: "0.8em" }}>
-                {images.length > 0 &&
-                  images[0]?.map((img) => {
-                    return (<EditGallery img={img}/>);
-                  })}
-              </Stack>
-
-              <Stack direction={"column"} w={"49%"} align={"start"} spacing={{ base: "0.8em" }}>
-                <Stack
-                  direction={"column"}
-                  w={{ base: "100%", xl: "50%" }}
-                  h={{ base: "30vh", lg: "35vh" }}
-                  align={"center"}
-                  justify={"center"}
-                  spacing={"1.5em"}>
-                  <Heading size={"md"} fontFamily={"Roboto"} letterSpacing={"5px"}>
-                    GALLERY
-                  </Heading>
-                  <Text fontFamily={"Roboto-Light"} textAlign={"center"}>
-                    This is a collection of artwork that we have curated over time
-                  </Text>
-                </Stack>
-                {images &&
-                  images[1]?.map((img) => {
-                    return (<EditGallery img={img}/>);
-                  })}
-              </Stack>
-            </Stack>
-          </Box>
+            <HStack w={"100%"} justify={"center"} flexWrap={"wrap"} rowGap={"2em"}>
+              {images.slice(pageLimits.start, pageLimits.end).map((image) => {
+                return (<EditGallery img={image}/>)
+              })}
+            </HStack>
+            <ButtonGroup alignSelf={"center"} flexWrap={"wrap"} mt={"2em"}>
+              <Button size={"sm"} onClick={previousPage} leftIcon={<IoChevronBack />}>
+                <Text display={{base: "none", md: "inline"}}>Previous</Text>
+              </Button>
+              {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
+                if (pageNum < page + 3 && pageNum > page - 3 && pageNum > 0 && pageNum <= pageLimits.maxPage)
+                return (
+                  <Button size={"sm"} onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
+                    {pageNum}
+                  </Button>
+                );
+              })}
+              <Button size={"sm"} onClick={nextPage} rightIcon={<IoChevronForward />}>
+              <Text display={{base: "none", md: "inline"}}>Next</Text>
+              </Button>
+            </ButtonGroup>
           <Modal isOpen={isOpen} onClose={onClose} size={"6xl"}>
               <ModalOverlay />
               <ModalContent>
                 <ModalBody>
                   <VStack w={"100%"}>
                     <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
-                      EDIT GALLERY
+                      ADD TO GALLERY
                     </Heading>
                     <HStack>
                       <Box display={"flex"} flexDirection={"column"}>

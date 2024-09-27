@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Heading, Image, Text } from "@chakra-ui/react"
 import { Project } from "../data/Projects";
 import { Helmet } from "react-helmet";
 
@@ -21,7 +21,10 @@ const ProjectPage = ({project}: Props) => {
             content="Key details of our exhibiton. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
         />
         </Helmet>
-        <Heading w={"90%"} size={"lg"} fontFamily={"Roboto"} textAlign={"center"}>What Makes a Space Nigeria? - Home Edition</Heading>
+        <Heading w={"90%"} size={"lg"} fontFamily={"Roboto"} textAlign={"center"}>{project.name}</Heading>
+        <Box maxW={{base: "50vw", lg: "30vw"}} minW={"20vw"} h={"fit-content"} >
+          <Image src={project.img} alt="Image of Project Cover"/>
+        </Box>
         <Text w={"80%"} h={"max-content"} whiteSpace={"pre-wrap"}>{project.textContent}</Text>
     </Box>
   )

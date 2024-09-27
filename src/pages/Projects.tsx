@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, useToast } from "@chakra-ui/react"
+import { Box, Flex, Heading, Text, useToast, VStack } from "@chakra-ui/react"
 import Navbar from "../components/Navbar"
 import ProjectCard from "../components/ProjectCard"
 import Footer from "../components/Footer"
@@ -42,10 +42,10 @@ const Projects = () => {
         />
         </Helmet>
         <Navbar/>
-        <Box marginLeft={"4em"}>
-          <Text  color={"#bdbdbd"} fontSize={"2em"}>Our</Text>
-          <Heading  color={"#2F3F89"} size={"xl"}>Projects</Heading>
-        </Box>
+        <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
+          <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>Projects</Heading>
+          <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>A list of our architectural projects & exhibitions where we explore Nigerian culture</Text>
+        </VStack>  
         <Flex alignSelf={"center"} justifyContent={"start"} width={"calc(100% - 8em)"} flexWrap={"wrap"} rowGap={"1em"} columnGap={"1%"}>
            
            {projList.map((project) => {

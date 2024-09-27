@@ -1,18 +1,12 @@
 import {
   Box,
   Button,
-  Divider,
   Heading,
   Icon,
   Modal,
   ModalBody,
   ModalContent,
   ModalOverlay,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -104,44 +98,18 @@ const NavbarAdmin = () => {
           borderBottom={url === "/gallery" ? "2px solid white" : ""}>
           GALLERY
         </Text>
-        <Popover>
-          <PopoverTrigger>
-            <Text
-              display={{ base: "none", sm: "inline" }}
-              fontSize={{ base: "auto", sm: "0.5em", md: "0.75em", lg: "1em" }}
-              _hover={{ cursor: "pointer" }}
-              padding={"0.5em"}
-              borderTop={url?.includes("/artefacts") ? "2px solid white" : ""}
-              borderBottom={
-                url?.includes("/artefacts") ? "2px solid white" : ""
-              }>
-              ARTEFACTS
-            </Text>
-          </PopoverTrigger>
-          <PopoverContent border={"0px"} bg={"#2F3F89"} borderRadius={"1em"}>
-            <PopoverArrow bg={"#2F3F89"} />
-            <PopoverBody
-              bg={"#2F3F89"}
-              borderRadius={"1em"}
-              border={"1px solid white"}
-              display={"flex"}
-              flexDirection={"column"}
-              alignItems={"center"}
-              gap={"0.5em"}>
-              <Text
-                onClick={() => navigate("/artefacts/submitted")}
-                _hover={{ cursor: "pointer", textDecoration: "underline" }}>
-                Submitted Artefacts
-              </Text>
-              <Divider />
-              <Text
-                onClick={() => navigate("/artefacts/commissioned")}
-                _hover={{ cursor: "pointer", textDecoration: "underline" }}>
-                Commissioned Artefacts
-              </Text>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
+        <Text
+          display={{ base: "none", sm: "inline" }}
+          fontSize={{ base: "auto", sm: "0.5em", md: "0.75em", lg: "1em" }}
+          _hover={{ cursor: "pointer" }}
+          padding={"0.5em"}
+          onClick={() => navigate("/admin/artefacts")}
+          borderTop={url?.includes("/artefacts") ? "2px solid white" : ""}
+          borderBottom={
+            url?.includes("/artefacts") ? "2px solid white" : ""
+          }>
+          ARTEFACTS
+        </Text>
 
         <Text
           display={{ base: "none", sm: "inline" }}

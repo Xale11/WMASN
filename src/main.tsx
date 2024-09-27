@@ -6,7 +6,6 @@ import ContextProvider from './context/ContextProvider.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.tsx'
 import Gallery from './pages/Gallery.tsx'
-import Artefacts from './pages/Artefacts.tsx'
 import Store from './pages/Store.tsx'
 import Contacts from './pages/Contacts.tsx'
 import Fonts from './fonts/Fonts.tsx'
@@ -20,8 +19,12 @@ import AboutAdmin from './adminPages/AboutAdmin.tsx'
 import ProjectsAdmin from './adminPages/ProjectsAdmin.tsx'
 import HomeAdmin from './adminPages/HomeAdmin.tsx'
 import GalleryAdmin from './adminPages/GalleryAdmin.tsx'
+import SubmittedAdmin from "./adminPages/SubmittedAdmin.tsx"
 import Auth from './adminPages/Auth.tsx'
 import { QueryClient, QueryClientProvider } from 'react-query';
+import SubmittedArtefacts from './pages/SubmittedArtefacts.tsx'
+import ComissionedArtefacts from './pages/CommissionedArtefacts.tsx'
+import ArtefactsAdmin from './adminPages/ArtefactsAdmin.tsx'
 
 const fonts = {
   Roboto: `'Roboto', ${base.fonts?.body}, sans-serif`,
@@ -44,11 +47,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/artefacts/submitted",
-    element: <Artefacts />,
+    element: <SubmittedArtefacts />,
   },
   {
     path: "/artefacts/commissioned",
-    element: <Artefacts />,
+    element: <ComissionedArtefacts />,
   },
   {
     path: "/store",
@@ -101,6 +104,18 @@ const router = createBrowserRouter([
   {
     path: "/admin/gallery",
     element: <GalleryAdmin />,
+  },
+  {
+    path: "/admin/artefacts",
+    element: <ArtefactsAdmin/>,
+  },
+  {
+    path: "/admin/artefacts/submitted",
+    element: <ArtefactsAdmin/>,
+  },
+  {
+    path: "/admin/artefacts/commissioned",
+    element: <ArtefactsAdmin />,
   },
 ]);
 
