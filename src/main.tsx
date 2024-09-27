@@ -19,7 +19,6 @@ import AboutAdmin from './adminPages/AboutAdmin.tsx'
 import ProjectsAdmin from './adminPages/ProjectsAdmin.tsx'
 import HomeAdmin from './adminPages/HomeAdmin.tsx'
 import GalleryAdmin from './adminPages/GalleryAdmin.tsx'
-import SubmittedAdmin from "./adminPages/SubmittedAdmin.tsx"
 import Auth from './adminPages/Auth.tsx'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import SubmittedArtefacts from './pages/SubmittedArtefacts.tsx'
