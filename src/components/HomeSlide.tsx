@@ -100,7 +100,7 @@ const HomeSlide = () => {
           </Text>
           <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid} />
         </Box>
-        <Box
+        {/* <Box
           onClick={() => {
             window.location.assign("https://www.eventbrite.co.uk/e/what-makes-a-space-nigerian-home-edition-tickets-986184322857?aff=oddtdtcreator");
           }}
@@ -122,7 +122,7 @@ const HomeSlide = () => {
             NEW EXHIBITION
           </Text>
           <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid} />
-        </Box>
+        </Box> */}
       </HStack>
     </Box>
   );

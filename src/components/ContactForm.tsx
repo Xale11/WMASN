@@ -21,13 +21,13 @@ const ContactForm = ({ourEmail, number}: Props) => {
   return (
     <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"Roboto"} justify={"space-between"} align={"center"} gap={{base: "2em", lg: "0em"}}>
       <Stack direction={"column"} align={{base: "center", lg: "start"}} justify={"center"} w={{base: "90%", lg: "40%"}} gap={"1em"} pl={{base: "0em", lg: "5em"}}>
-        <Heading size={"2xl"} color={"#2c2c2c"} fontFamily={"Roboto-Light"} letterSpacing={"3px"} textAlign={{base: "center", lg: "start"}}>CONTACT OUR TEAM</Heading>
-        <Text textAlign={{base: "center", lg: "start"}} fontFamily={"Roboto-Light"} color={"#2c2c2c"}>Connect with us to see how our designs can enhance your living or working spaces.</Text>
-        <Box borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
+        <Heading size={"2xl"} color={"#2c2c2c"} fontFamily={"Roboto-Light"} letterSpacing={"3px"} textAlign={{base: "center", lg: "start"}}>CONTACT US</Heading>
+        <Text textAlign={{base: "center", lg: "start"}} fontFamily={"Roboto-Light"} color={"#2c2c2c"}>Please get in touch with us for any enquiries.</Text>
+        <Box onClick={() => {window.open(`tel:${number}`)}} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
             <Icon as={FiPhone}/>
             <Text>{number}</Text>
         </Box>
-        <Box borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
+        <Box onClick={() => {window.open(`mailto:${ourEmail}`)}} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
             <Icon as={IoMailOutline}/>
             <Text>{ourEmail}</Text>
         </Box>

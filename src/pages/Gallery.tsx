@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Heading, HStack, Image, Text, useToast, VStack } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Grid, GridItem, Heading, HStack, Image, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import ComingSoon from '../components/ComingSoon'
@@ -8,6 +8,7 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { paginateData } from "../util/Pagination";
 import { Helmet } from "react-helmet";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export interface PageData {
   start: number;
@@ -17,40 +18,16 @@ export interface PageData {
 const Gallery = () => {
 
   const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  // const [paginatedImages, setPaginatedImages] = useState<GalleryImage[][]>([[],[]]);
-  const [page, setPage] = useState<number>(1); // current page number
-  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 4, maxPage: 1 });
+  const [images, setImages] = useState<GalleryImage[]>([])
+  const [focusImg, setFocusImg] = useState<GalleryImage>()
+  const [numImgs, setNumImgs] = useState<number>(8)
 
-  const setPageView = (num: number) => {
-    const pageData = paginateData(num, 4, images.length);
-    setPage(num);
-    setPageLimits(pageData);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const nextPage = () => {
-    if (page === pageLimits.maxPage) {
-      return;
-    } else {
-      setPage((prev) => prev + 1);
-      setPageView(page + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (page === 1) {
-      return;
-    } else {
-      setPage((prev) => prev - 1);
-      setPageView(page - 1);
-    }
-  };
-
-  useEffect(() => {
-    setPageView(1)
-  }, [images])
+  const openModal = (image: GalleryImage) => {
+    setFocusImg(image)
+    onOpen()
+  }
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -93,36 +70,25 @@ const Gallery = () => {
         <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>Gallery</Heading>
         <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>This is a collection of artwork that we have curated over time</Text>
       </VStack>  
-      <HStack w={"100%"} justify={"center"} flexWrap={"wrap"} rowGap={"2em"}>
-        {images.slice(pageLimits.start, pageLimits.end).map((image) => {
-          return (
-          <VStack w={{ base: "90%", lg: "22%" }} aspectRatio={"1/1"} justify={"center"} spacing={0}>
-            <Box w={"100%"} h={"93%"}>
-              <Image as={LazyLoadImage} loading='lazy' src={image.src} w={"100%"} h={"100%"} objectFit={"contain"} alt='Image of an artefact'/>
-            </Box>
-            <Box w={"100%"} h={"7%"} textAlign={"center"} letterSpacing={"3px"}>
-              <Text>{image.description}</Text>
-            </Box>
-          </VStack>
-          )
-        })}
-      </HStack>
-      <ButtonGroup alignSelf={"center"} flexWrap={"wrap"} mt={"2em"}>
-        <Button size={"sm"} onClick={previousPage} leftIcon={<IoChevronBack />}>
-          <Text display={{base: "none", md: "inline"}}>Previous</Text>
-        </Button>
-        {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
-          if (pageNum < page + 3 && pageNum > page - 3 && pageNum > 0 && pageNum <= pageLimits.maxPage)
-          return (
-            <Button size={"sm"} onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
-              {pageNum}
-            </Button>
-          );
-        })}
-        <Button size={"sm"} onClick={nextPage} rightIcon={<IoChevronForward />}>
-        <Text display={{base: "none", md: "inline"}}>Next</Text>
-        </Button>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 300: 2, 500: 3, 700: 4 }} style={{width: "95vw", margin: "0em auto 0em auto"}}>
+        <Masonry gutter="1em">
+          {images.slice(0, numImgs).map((image) => {
+            return (
+                <Image loading='lazy' onClick={() => openModal(image)} src={image.src} w={"100%"} objectFit={"contain"} alt='Image of an artefact'/>
+            )
+          })}
+        </Masonry>
+      </ResponsiveMasonry>
+      <ButtonGroup mx={"auto"}>
+        <Button display={numImgs > images.length ? "none" : "block"} onClick={() => setNumImgs(num => num + 10)} bg={"#2F3F89"} color={"white"}>Show More</Button>
+        <Button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Scroll To Top</Button>
       </ButtonGroup>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered={true} size={"xs"}>
+          <ModalOverlay/>
+          <ModalContent display={"flex"} alignItems={"center"} justifyContent={"center"}>
+              <Image src={focusImg?.src} maxH={"95vh"} maxW={"95vw"} objectFit={"contain"} alt='Image of an artefact'/>
+          </ModalContent>
+      </Modal>
       <Footer />
     </Box>
   );

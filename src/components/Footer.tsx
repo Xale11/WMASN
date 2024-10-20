@@ -12,9 +12,9 @@ const Footer = () => {
   const navigate = useNavigate()
 
   return (
-    <Box  bg={"#2c2c2c"} w={"100%"} h={{base: "25em", lg: "19em"}} display={"flex"} justifyContent={{base: "space-around"}} flexWrap={"wrap"} color={"white"} fontFamily={"Roboto"}>
+    <Box  bg={"#2c2c2c"} w={"100%"} h={{base: "25em", lg: "19em"}} display={"flex"} justifyContent={{base: "space-around"}} flexWrap={"wrap"} color={"white"} fontFamily={"Roboto"} pl={{base: 0, lg: "5em"}}>
       <Box w={{base: "100%", lg: "20%"}} display={"flex"} justifyContent={{base: "center", lg: "start"}} alignItems={{base: "center", lg: "start"}}>
-        <Image src={WMASN} objectFit={"contain"} width={"170px"} margin={{base: "0em", lg: "2em 0em 0em 1.5em"}}/>
+        <Image src={WMASN} objectFit={"contain"} width={"170px"} margin={{base: "0em", lg: "2em 0em 0em 0em"}}/>
       </Box>
       <Box w={{base: "30%", lg: "20%"}} display={"flex"} flexDirection={"column"} gap={"1em"} alignItems={{base: "center", lg: "start"}}>
         <Heading size={"sm"} marginTop={{base: "0em", lg: "2em"}}>Information</Heading>
