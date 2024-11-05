@@ -12,12 +12,12 @@ const Footer = () => {
   const navigate = useNavigate()
 
   return (
-    <Box  bg={"#2c2c2c"} w={"100%"} h={{base: "25em", lg: "19em"}} display={"flex"} justifyContent={{base: "space-around"}} flexWrap={"wrap"} color={"white"} fontFamily={"Roboto"} pl={{base: 0, lg: "5em"}}>
+    <Box  bg={"#2c2c2c"} w={"100%"} h={{base: "25em", lg: "19em"}} display={"flex"} justifyContent={{base: "space-around"}} flexWrap={"wrap"} color={"white"} fontFamily={"swis721-ex-bt"} pl={{base: 0, lg: "5em"}}>
       <Box w={{base: "100%", lg: "20%"}} display={"flex"} justifyContent={{base: "center", lg: "start"}} alignItems={{base: "center", lg: "start"}}>
         <Image src={WMASN} objectFit={"contain"} width={"170px"} margin={{base: "0em", lg: "2em 0em 0em 0em"}}/>
       </Box>
       <Box w={{base: "30%", lg: "20%"}} display={"flex"} flexDirection={"column"} gap={"1em"} alignItems={{base: "center", lg: "start"}}>
-        <Heading size={"sm"} marginTop={{base: "0em", lg: "2em"}}>Information</Heading>
+        <Heading fontFamily={"swis721-ex-bt"} size={"md"} marginTop={{base: "0em", lg: "2em"}}>Information</Heading>
         <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/")}}>Main</Text>
         <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/gallery")}}>Gallery</Text>
         <Popover>
@@ -37,7 +37,7 @@ const Footer = () => {
         <Text fontSize={{base: "0.75em", md: "1em"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} onClick={() => {navigate("/store")}}>Store</Text>
       </Box>
       <Box w={{base: "30%", lg: "20%"}} display={"flex"} flexDirection={"column"} gap={"1em"} alignItems={{base: "center", lg: "start"}}>
-        <Heading size={"sm"} marginTop={{base: "0em", lg: "2em"}}>Contacts</Heading>
+        <Heading fontFamily={"swis721-ex-bt"} size={"md"} marginTop={{base: "0em", lg: "2em"}}>Contacts</Heading>
 
         <Box display={"flex"} gap={"1em"} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}}>
           <Box>
@@ -69,7 +69,7 @@ const Footer = () => {
         </Box>
       </Box>
       <Box w={{base: "30%", lg: "40%"}} display={"flex"} flexDirection={"column"} gap={"1em"} alignItems={{base: "center", lg: "start"}}>
-        <Heading size={"sm"} marginTop={{base: "0em", lg: "2em"}}>Social Media</Heading>
+        <Heading fontFamily={"swis721-ex-bt"} size={"md"} marginTop={{base: "0em", lg: "2em"}}>Social Media</Heading>
         <Flex gap={"2em"} width={"95%"} fontSize={{base: "1em", lg: "1.25em"}} flexDirection={{base: "row", lg: "row"}} flexWrap={"wrap"} justifyContent={{base: "center", lg: "start"}}>
             {/* <Icon onClick={() => {window.location.href = "https://www.facebook.com"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} as={FaFacebookF}/>
             <Icon onClick={() => {window.location.href = "https://www.x.com"}} transition={"all 300ms ease-in-out"} _hover={{cursor: "pointer", color: "#2F3F89"}} as={BsTwitterX}/> */}

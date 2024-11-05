@@ -31,7 +31,7 @@ const Projects = () => {
   }, [])
 
   return (
-    <Box w={"100vw"} display={"flex"} flexDir={"column"} gap={"1em"}>
+    <Box w={"100vw"} display={"flex"} flexDir={"column"} gap={"1em"} fontFamily={"swis721-ex-bt"}>
       <Helmet>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,17 +42,14 @@ const Projects = () => {
         />
         </Helmet>
         <Navbar/>
-        <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
-          <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>Projects</Heading>
-          <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>A list of our architectural projects & exhibitions where we explore Nigerian culture</Text>
+        <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
+          <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"} textAlign={"center"}>Projects</Heading>
+          <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>A list of our architectural projects & exhibitions where we explore Nigerian culture</Text>
         </VStack>  
-        <Flex alignSelf={"center"} justifyContent={"start"} width={"calc(100% - 8em)"} flexWrap={"wrap"} rowGap={"1em"} columnGap={"1%"}>
-           
+        <Flex alignSelf={"center"} justifyContent={"center"} width={"calc(100% - 8em)"} flexWrap={"wrap"} rowGap={6} columnGap={"1%"}>
            {projList.map((project) => {
             return (<ProjectCard project={project}/>)
            })}
-           {/* <ProjectCard/> */}
-
         </Flex>
         <Footer/>
     </Box>

@@ -12,10 +12,10 @@ interface Props {
 const StaggeredGrid = ({imgs}: Props) => {
 
   const [page, setPage] = useState<number>(1); // current page number
-  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 10, maxPage: 1 });
+  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 8, maxPage: 1 });
 
   const setPageView = (num: number) => {
-    const pageData = paginateData(num, 10, imgs.length);
+    const pageData = paginateData(num, 8, imgs.length);
     setPage(num);
     setPageLimits(pageData);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -44,7 +44,7 @@ const StaggeredGrid = ({imgs}: Props) => {
   }, [imgs])
 
   return (
-    <HStack w={"100%"} justify={"center"} align={"start"} flexWrap={"wrap"} >
+    <HStack w={"100%"} justify={"center"} align={"start"} flexWrap={"wrap"} spacing={0}>
       <VStack display={{base: "none", md: "flex"}} w={{ base: "90%", md: "22%" }} spacing={"5em"}>
         {imgs.slice(pageLimits.start, pageLimits.end).map((img, i) => {
           if (i % 4 == 0){
@@ -107,18 +107,12 @@ interface SubProps {
 
 export const StaggeredGridItem = ({img}: SubProps) => {
 
-  const [show, setShow] = useState<boolean>(false)
+  // const [show, setShow] = useState<boolean>(false)
 
   return (
-    <VStack w={"100%"} aspectRatio={"1/1"} justify={"center"} spacing={0} cursor={"pointer"} overflow={"hidden"} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-      <Box w={"100%"} h={"93%"}>
-        <Image src={img.src} w={"100%"} h={"100%"} objectFit={"contain"} alt='Image of an artefact'/>
-      </Box>
-      <Box display={{base: "none", md: "inline"}} w={"100%"} h={"7%"}>
-        {show && <Text w={"100%"} h={"100%"} textAlign={"center"} letterSpacing={"3px"}>{img.description}</Text>}
-      </Box>
-      <Box display={{base: "inline", md: "none"}}  w={"100%"} h={"7%"}>
-        <Text w={"100%"} h={"100%"} textAlign={"center"} letterSpacing={"3px"}>{img.description}</Text>
+    <VStack w={"100%"} aspectRatio={"1/1"} justify={"center"} spacing={0} cursor={"pointer"} overflow={"hidden"}>
+      <Box w={"100%"} h={"100%"}>
+        <Image loading='lazy' src={img.src} w={"100%"} h={"100%"} objectFit={"cover"} transition={"all 300ms ease-in-out"} alt='Image of an artefact'/>
       </Box>
     </VStack>
   )

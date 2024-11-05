@@ -1,7 +1,8 @@
-import { Box, Heading, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Heading, Image, Modal, ModalCloseButton, ModalContent, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react'
 import { Product } from '../data/StoreData'
 import { useState } from 'react'
 import ProductPage from '../pages/ProductPage'
+import Navbar from './Navbar'
 
 interface Props {
     item: Product
@@ -62,19 +63,19 @@ const StoreCard = ({item}: Props) => {
         />
       </Box>
       <Box>
-        <Text fontFamily={"Roboto-Light"}>{item.name}</Text>
-        <Text fontFamily={"Roboto"} color={"#2F3F89"}>
+        <Text fontFamily={"swis721-ex-bt"}>{item.name}</Text>
+        <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"}>
           £{item.price.toFixed(2)}
         </Text>
       </Box>
-      {isNew() && <Box p={"0.5em 1em"} position={"absolute"} bg={"#2c2c2c"} color={"white"} fontFamily={"Roboto"} top={0} right={0}>
+      {isNew() && <Box p={"0.5em 1em"} position={"absolute"} bg={"#2c2c2c"} color={"white"} fontFamily={"swis721-ex-bt"} top={0} right={0}>
         NEW
       </Box>}
-      <Modal onClose={onClose} isOpen={isOpen} size="4xl">
+      <Modal onClose={onClose} isOpen={isOpen} size="full">
         <ModalOverlay />
-        <ModalContent bg={"rgba(0, 0, 0, 0.0)"} boxShadow={"none"}>
-          <ModalBody w={"100%"}>
-            <ModalCloseButton
+        <ModalContent boxShadow={"none"}>
+          <Navbar/>
+          <ModalCloseButton
               bg={"#2F3F89"}
               color={"white"}
               position={"absolute"}
@@ -83,8 +84,7 @@ const StoreCard = ({item}: Props) => {
               left={{ base: undefined, sm: 9, lg: "12em" }}
               display={{base: "block", lg: "none"}}
             />
-            <ProductPage item={item} />
-          </ModalBody>
+            <ProductPage item={item} onClose={onClose}/>
         </ModalContent>
       </Modal>
     </Box>

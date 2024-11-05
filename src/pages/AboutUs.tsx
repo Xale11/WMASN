@@ -1,12 +1,7 @@
-import { Box, Heading, HStack, Icon, Image, Text, useToast, VStack } from "@chakra-ui/react"
-// import Naija from "../assets/Naija.jpg"
-// import Naija2 from "../assets/Naija2.png"
-// import Naija4 from "../assets/Naija3.png"
-import WMASN from "../assets/WMASN.png"
-// import { useNavigate } from "react-router-dom"
+import { Box, Heading, HStack, Image, Text, useToast, VStack } from "@chakra-ui/react"
+import aboutUsImg from "../assets/WMASN PHOTOS LR-42.jpg"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import { LiaLongArrowAltDownSolid } from "react-icons/lia";
 import MeetTheTeam from "../components/MeetTheTeam";
 import { getAboutUsInfo, TeamMember } from "../data/Team";
 import { useEffect, useState } from "react";
@@ -54,7 +49,7 @@ const AboutUs = () => {
     }, [])
 
     return (
-        <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
+        <Box bg={"white"} fontFamily={"swis721-ex-bt"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"}>
             <Helmet>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,25 +61,24 @@ const AboutUs = () => {
                 </Helmet>
             <Navbar/>
             
-            <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
-                <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>ABOUT US</Heading>
-                <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>{subtitle}.</Text>
+            <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
+                <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"}>ABOUT US</Heading>
+                <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>{subtitle}.</Text>
             </VStack>
 
-            <HStack w={"100%"} bg={"#2c2c2c"} marginBottom={"2em"} color={"white"} p={"2em 0em"} position={"relative"}>
-                <VStack display={{base: "none", xl: "flex"}}  w={{base: "50%"}}>
-                    <Image src={WMASN}/>
+            <HStack justify={"center"} w={"100%"} marginBottom={"2em"} color={"#2F3F89"} p={"2em 0em"} position={"relative"}>
+                <VStack w={{base: "100%", xl: "50%"}} spacing={"3em"}>
+                    <Text w={{base: "90%", lg: "90%"}} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} whiteSpace={"pre-wrap"}>{ourStory}</Text>
                 </VStack>
 
-                <VStack w={{base: "100%", xl: "50%"}} spacing={"3em"}>
-                    <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>OUR STORY</Heading>
-                    <Text w={{base: "90%", lg: "50%"}} fontFamily={"Roboto"} textAlign={"center"} whiteSpace={"pre-wrap"}>{ourStory}</Text>
+                <VStack display={{base: "none", xl: "flex"}} maxH={"20%"} maxW={{base: "40%"}}>
+                    <Image objectFit={"contain"} src={aboutUsImg}/>
                 </VStack>
-                <Box position={"absolute"} display={{base: "none", xl: "flex"}} bottom={5} left={0} right={0} margin={"0 auto"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} w={"fit-content"}>
-                    <Text fontFamily={"Roboto-Light"} fontSize={"0.6em"}>meet the team</Text>
-                    <Icon as={LiaLongArrowAltDownSolid} />
-                </Box>
             </HStack>
+
+            <VStack w={"100%"} justify={"start"} m={"1.4em 0em"}>
+                <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} letterSpacing={"5px"}>Team</Heading>
+            </VStack>
 
             <MeetTheTeam theTeam={theTeam}/>
 

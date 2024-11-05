@@ -1,6 +1,8 @@
-import { Box, Button, Card, FormLabel, Heading, HStack, Image, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Card, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalContent, ModalOverlay, Popover, PopoverCloseButton, PopoverContent, PopoverTrigger, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
-import { deleteProject, editProject, Project } from '../data/Projects'
+import { deleteProject, editProject, Project, SectionContent } from '../data/Projects'
+import AddLiveSection from './AddLiveSection'
+import EditLiveSection from './EditLiveSection'
 
 interface Props {
   project: Project
@@ -8,11 +10,14 @@ interface Props {
   index: number
 }
 
-const EditProject = ({project, projList, index}: Props) => {
+const EditProject = ({project, index}: Props) => {
 
   const [name, setName] = useState<string>(project.name)
   const [description, setDescription] = useState<string>(project.description)
-  const [textContent, setTextContent] = useState<string>(project.textContent)
+  const [showAddSection, setShowAddSection] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [deleteLoading, setDeleteLoading] = useState<boolean>(false)
+  const [sectionList, setSectionList] = useState<SectionContent[]>(project.sections ?? [])
 
   const {onOpen, isOpen, onClose} = useDisclosure()
 
@@ -21,13 +26,14 @@ const EditProject = ({project, projList, index}: Props) => {
   const toast = useToast()
 
   const checkInputs = () => {
-    if (name === "" || description === "" || description === "" ){
+    if (name === "" || description === "" ){
       return false
     }
     return true
   }
 
   const editCurrentProject = async () => {
+    setLoading(true)
     if (!checkInputs()){
       toast({
         status: "error",
@@ -36,18 +42,22 @@ const EditProject = ({project, projList, index}: Props) => {
         duration: 5000,
         position: "top"
       })
+      setLoading(false)
       return 
     }
-    const newProjList = [...projList]
-    newProjList[index] = {
+
+    const newProj: Project = {
+      id: project.id,
       name: name,
-      textContent: textContent,
       description: description,
-      img: undefined
+      img: project.img,
+      imgPath: project.imgPath,
+      sections: sectionList
     }
 
-    const res = await editProject(newProjList, imgRef.current?.files?.[0], index)
+    const res = await editProject(newProj, imgRef.current?.files?.[0])
     if (res === "success"){
+      setLoading(false)
       onClose()
       toast({
         status: "success",
@@ -56,6 +66,7 @@ const EditProject = ({project, projList, index}: Props) => {
         position: "top"
       })
     } else {
+      setLoading(false)
       toast({
         status: "error",
         title: "Error Editing Project. Try Again.",
@@ -66,6 +77,7 @@ const EditProject = ({project, projList, index}: Props) => {
   }
 
   const removeCurrentProject = async () => {
+    setDeleteLoading(true)
     if (!checkInputs()){
       toast({
         status: "error",
@@ -74,15 +86,19 @@ const EditProject = ({project, projList, index}: Props) => {
         duration: 5000,
         position: "top"
       })
+      setDeleteLoading(false)
       return 
     }
     const res = await deleteProject({
+      id: project.id,
       name: name,
       description: description,
-      textContent: textContent,
-      img: undefined
-    }, index)
+      img: project.img,
+      imgPath: project.imgPath,
+      sections: sectionList
+    })
     if (res === "success"){
+      setDeleteLoading(false)
       onClose()
       toast({
         status: "success",
@@ -91,6 +107,7 @@ const EditProject = ({project, projList, index}: Props) => {
         position: "top"
       })
     } else {
+      setDeleteLoading(false)
       toast({
         status: "error",
         title: "Error Deleting Project. Try Again.",
@@ -99,6 +116,8 @@ const EditProject = ({project, projList, index}: Props) => {
       })
     }
   }
+
+  console.log(sectionList)
 
   return (
     <VStack w={"100%"}>
@@ -111,47 +130,62 @@ const EditProject = ({project, projList, index}: Props) => {
       <Modal isOpen={isOpen} onClose={onClose} size={"6xl"}>
         <ModalOverlay />
         <ModalContent>
-          <ModalBody>
-            <VStack w={"100%"}>
-              <Box h={"65%"} w={"30%"}>
-                <Image w={"100%"} h={"100%"} src={project.img} objectFit={"contain"} alt={"Image of product"}/>
+        <ModalBody>
+          <VStack w={"100%"}>
+            <Heading letterSpacing={"5px"}>
+              Edit Project
+            </Heading>
+            <ButtonGroup>
+              <Button isLoading={loading} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                <Text onClick={editCurrentProject} letterSpacing={"3px"}>SAVE</Text>
+              </Button>
+              <Popover>
+                <PopoverTrigger >
+                  <Button bg={"red.500"} color={"white"}>Delete Project</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <VStack mb={1}>
+                    <Text>Are You Sure?</Text>
+                    <ButtonGroup>
+                      <Button isLoading={deleteLoading} onClick={removeCurrentProject}>Yes</Button>
+                      <PopoverCloseButton fontSize={"md"}>X</PopoverCloseButton>
+                    </ButtonGroup>
+                  </VStack>
+                </PopoverContent>
+              </Popover>
+            </ButtonGroup>
+            <HStack>
+              <Box display={"flex"} flexDirection={"column"}>
+                <Input type="file" ref={imgRef}/>
+                <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  IMAGE 1 (Primary)
+                </Box>
               </Box>
-              <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
-                EDIT Project
-              </Heading>
-              <HStack>
-                <Box display={"flex"} flexDirection={"column"}>
-                  <Input type="file" ref={imgRef}/>
-                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
-                    IMAGE 1 (Primary)
-                  </Box>
-                  <Box  display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#FD2F2F"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
-                    REMOVE IMAGE
-                  </Box>
-                </Box>
-              </HStack>
-              <VStack w={"90%"} spacing={"1.1em"}>
-                <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
-                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} fontFamily={"Roboto"} placeholder="Name of project" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
-                </Box>
-                <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
-                  <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Project Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
-                </Box>
-                <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Text Content</FormLabel>
-                  <Input as={"textarea"} value={textContent} onChange={(e) => {setTextContent(e.target.value)}} h={"10em"} name="Role" id="Role" type={"text"} fontFamily={"Roboto"} placeholder="Text Content of Project" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
-                </Box>
-                <Box as="button" onClick={editCurrentProject} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                  <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
-                </Box>
-                <Box as="button" onClick={removeCurrentProject}  borderRadius={"0em"} bg={"#FD2F2F"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                  <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>DELETE</Text>
-                </Box>
-              </VStack>
+            </HStack>
+            <VStack w={"90%"} spacing={"1.1em"}>
+              <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
+                <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
+                <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} placeholder="Name of project" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              </Box>
+              <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
+                <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
+                <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} placeholder="Project Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              </Box>
+              <Box display={"flex"} flexDirection={"column"} width={"100%"}>
+                <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Sections</FormLabel>
+                {/* <Input as={"textarea"} value={textContent} onChange={(e) => {setTextContent(e.target.value)}} h={"10em"} name="Role" id="Role" type={"text"} placeholder="Text Content of Project" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/> */}
+                {!showAddSection && <Button onClick={() => {setShowAddSection(true)}} bg={"#2c2c2c"} mx={"auto"} mb={1} color={"white"}>Add Section</Button>}
+                {showAddSection && <AddLiveSection setShowAddSection={setShowAddSection} setSectionList={setSectionList} sectionList={sectionList}/>}
+                {sectionList.map((section, i) => {
+                  return (<EditLiveSection section={section} sectionList={sectionList} setSectionList={setSectionList} index={i}/>)
+                })}
+              </Box>
+              <Button isLoading={loading} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                <Text onClick={editCurrentProject} letterSpacing={"3px"}>SAVE</Text>
+              </Button>
             </VStack>
-          </ModalBody>
+          </VStack>
+        </ModalBody>
         </ModalContent>
       </Modal>
     </VStack>

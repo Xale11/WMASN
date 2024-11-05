@@ -126,7 +126,8 @@ const Store = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      gap={"1em"}>
+      gap={"1em"}
+      fontFamily={"swis721-ex-bt"}>
         <Helmet>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -164,21 +165,10 @@ const Store = () => {
           </Box>
         </Box>
       </Link>
-      <Heading
-        size={"lg"}
-        mt={{ base: "1.5em", sm: "0em" }}
-        fontFamily={"Roboto"}
-        letterSpacing={"5px"}
-        textAlign={"center"}>
-        WELCOME TO THE STORE
-      </Heading>
-      <Text
-        w={{ base: "80%", lg: "50%" }}
-        fontFamily={"Roboto-Light"}
-        textAlign={"center"}>
-        Here are a collection of artefacts that we believe are representative of
-        Nigerian culture and defining factors of what makes a space Nigerian
-      </Text>
+      <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
+        <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"} textAlign={"center"}>STORE</Heading>
+        <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>Here are a collection of artefacts that we believe are representative of Nigerian culture and defining factors of what makes a space Nigerian</Text>
+      </VStack> 
       <Stack direction={{ base: "column", sm: "row" }}>
         <Popover>
           <PopoverTrigger>
@@ -195,7 +185,7 @@ const Store = () => {
               color={"white"}
               transition={"all 300ms ease-in-out"}
               _hover={{ bg: "#2F3F89" }}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>
+              <Text letterSpacing={"3px"}>
                 SORT
               </Text>
               <Icon fontSize={"1.5em"} as={GoChevronDown} />
@@ -205,7 +195,6 @@ const Store = () => {
             w={"13em"}
             border={"1px solid #2c2c2c"}
             borderRadius={"0em"}
-            fontFamily={"Roboto-Light"}
             ref={popoverRef}>
             <Stack direction={"column"} spacing={{ base: "1em", lg: "0em" }}>
               <Text
@@ -280,7 +269,6 @@ const Store = () => {
             onChange={(e) => {
               setSearch(e.target.value);
             }}
-            fontFamily={"Roboto"}
             type="text"
             w={"100%"}
             h={"100%"}

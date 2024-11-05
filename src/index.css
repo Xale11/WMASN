@@ -31,6 +31,18 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family:"swis721-ex-bt";
+  src: url(./fonts/swis721-ex-bt.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family:"swis721-ex-bt-bold";
+  src: url(./fonts/swis721-bt-8.ttf);
+  font-style: normal;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 7px;

@@ -1,13 +1,11 @@
-import { Box, Button, ButtonGroup, Grid, GridItem, Heading, HStack, Image, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Heading, Image, Modal, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import ComingSoon from '../components/ComingSoon'
 import { useEffect, useState } from "react";
 import { GalleryImage, getImages } from "../data/GalleryImgs";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
-import { paginateData } from "../util/Pagination";
 import { Helmet } from "react-helmet";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export interface PageData {
@@ -55,7 +53,8 @@ const Gallery = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"start"}
-      gap={"1em"}>
+      gap={"1em"}
+      fontFamily={"swis721-ex-bt"}>
       <Navbar />
       <Helmet>
         <meta charSet="UTF-8" />
@@ -66,9 +65,9 @@ const Gallery = () => {
             content="A display of our Exhibitions experiences and curated Artefacts. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
         />
         </Helmet>
-      <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
-        <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>Gallery</Heading>
-        <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>This is a collection of artwork that we have curated over time</Text>
+      <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
+        <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} letterSpacing={"2px"} color={"#2F3F89"} textAlign={"center"}>GALLERY</Heading>
+        <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>This is a collection of artwork that we have curated over time</Text>
       </VStack>  
       <ResponsiveMasonry columnsCountBreakPoints={{ 300: 2, 500: 3, 700: 4 }} style={{width: "95vw", margin: "0em auto 0em auto"}}>
         <Masonry gutter="1em">

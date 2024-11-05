@@ -23,7 +23,7 @@ const Navbar = () => {
     const navOptions = ["main", "gallery", "artefacts", "about", "projects", "store",]
 
   return (
-    <Box w={"100vw"} h={{base: "4em", md: "5em", lg: "6em"}} bg={"#2F3F89"} display={"flex"} alignItems={"center"} fontFamily={"Roboto"} position={"relative"} zIndex={3}>
+    <Box w={"100vw"} h={{base: "4em", md: "5em", lg: "6em"}} bg={"#2F3F89"} display={"flex"} alignItems={"center"} fontFamily={"swis721-ex-bt"} position={"relative"} zIndex={3}>
         <Box onClick={() => {navigate("/")}} width={{base: "80%", sm: "25%", lg: "20%"}} h={"100%"} cursor={"pointer"} display={"flex"} alignItems={"center"} justifyContent={"center"}>
             <Image src={Logo} alt='Logo' objectFit='contain' w={{base: "250px", sm: "150px", lg: "250px"}}/>
         </Box>
@@ -36,10 +36,10 @@ const Navbar = () => {
                     <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}}  padding={"0.5em"} borderTop={url?.includes("/artefacts") ? "2px solid white": ""} borderBottom={url?.includes("/artefacts") ? "2px solid white": ""}>ARTEFACTS</Text>
                 </PopoverTrigger>
                 <PopoverContent border={"0px"} bg={"#2F3F89"}>
-                    <PopoverBody bg={"#2F3F89"}  border={"1px solid white"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"0.5em"}>
-                        <Text onClick={() => navigate("/artefacts/submitted")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Submitted Artefacts</Text>
+                    <PopoverBody bg={"#2F3F89"}  display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"0.5em"}>
+                        <Text textAlign={"center"} mt={3} onClick={() => navigate("/artefacts/submitted")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Submitted Artefacts</Text>
                         <Divider/>
-                        <Text onClick={() => navigate("/artefacts/commissioned")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Commissioned Artefacts</Text>
+                        <Text textAlign={"center"} onClick={() => navigate("/artefacts/commissioned")} _hover={{cursor: "pointer", textDecoration: "underline"}}>Commissioned Artefacts</Text>
                     </PopoverBody>
                 </PopoverContent>
             </Popover>

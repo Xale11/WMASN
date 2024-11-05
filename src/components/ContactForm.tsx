@@ -19,10 +19,10 @@ const ContactForm = ({ourEmail, number}: Props) => {
   // WMASN.Nigerian@gmail.com
 
   return (
-    <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"Roboto"} justify={"space-between"} align={"center"} gap={{base: "2em", lg: "0em"}}>
+    <Stack direction={{base: "column", lg: "row"}} w={"100%"} p={"5em 0em"} fontFamily={"swis721-ex-bt"} justify={"space-between"} align={"center"} gap={{base: "2em", lg: "0em"}}>
       <Stack direction={"column"} align={{base: "center", lg: "start"}} justify={"center"} w={{base: "90%", lg: "40%"}} gap={"1em"} pl={{base: "0em", lg: "5em"}}>
-        <Heading size={"2xl"} color={"#2c2c2c"} fontFamily={"Roboto-Light"} letterSpacing={"3px"} textAlign={{base: "center", lg: "start"}}>CONTACT US</Heading>
-        <Text textAlign={{base: "center", lg: "start"}} fontFamily={"Roboto-Light"} color={"#2c2c2c"}>Please get in touch with us for any enquiries.</Text>
+        <Heading size={"2xl"} color={"#2c2c2c"} fontFamily={"swis721-ex-bt"}  letterSpacing={"3px"} textAlign={{base: "center", lg: "start"}}>CONTACT US</Heading>
+        <Text textAlign={{base: "center", lg: "start"}} fontFamily={"swis721-ex-bt"} color={"#2c2c2c"}>Please get in touch with us for any enquiries.</Text>
         <Box onClick={() => {window.open(`tel:${number}`)}} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"1em"} justifyContent={"center"} padding={"0.75em 1em"} cursor={"pointer"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "0.75em 1.5em"}}>
             <Icon as={FiPhone}/>
             <Text>{number}</Text>
@@ -39,23 +39,23 @@ const ContactForm = ({ourEmail, number}: Props) => {
 
             <Stack direction={{base: "column", lg: "row"}} w={"100%"} spacing={"2em"}>
               <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={{base: "100%", lg: "45%"}}>
-                <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="name">NAME</FormLabel>
-                <Input value={name} onChange={(e) => {setName(e.target.value)}} name="name" id="name" type={"text"} fontFamily={"Roboto"} placeholder="John Doe" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                <FormLabel m={"0px"} fontFamily={"swis721-ex-bt"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="name">NAME</FormLabel>
+                <Input value={name} onChange={(e) => {setName(e.target.value)}} name="name" id="name" type={"text"} fontFamily={"swis721-ex-bt"} placeholder="John Doe" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
               </Box>
 
               <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={{base: "100%", lg: "45%"}}>
-                <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="email">EMAIL</FormLabel>
-                <Input value={email} onChange={(e) => {setEmail(e.target.value)}} name="email" id="email" type={"email"} fontFamily={"Roboto"} placeholder="example@email.com" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                <FormLabel m={"0px"} fontFamily={"swis721-ex-bt"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="email">EMAIL</FormLabel>
+                <Input value={email} onChange={(e) => {setEmail(e.target.value)}} name="email" id="email" type={"email"} fontFamily={"swis721-ex-bt"} placeholder="example@email.com" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
               </Box>
             </Stack>
 
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"calc(90% + 2em)"}>
-              <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">MESSAGE</FormLabel>
-              <Input value={message} onChange={(e) => {setMessage(e.target.value)}} name="message" id="message" type={"text"} fontFamily={"Roboto"} placeholder="Hi there..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <FormLabel m={"0px"} fontFamily={"swis721-ex-bt"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">MESSAGE</FormLabel>
+              <Input value={message} onChange={(e) => {setMessage(e.target.value)}} name="message" id="message" type={"text"} fontFamily={"swis721-ex-bt"} placeholder="Hi there..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
 
             <Box as="button" borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SEND EMAIL</Text>
+              <Text fontFamily={"swis721-ex-bt"} letterSpacing={"3px"}>SEND EMAIL</Text>
               <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid}/>
             </Box>
 

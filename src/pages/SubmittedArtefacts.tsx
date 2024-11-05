@@ -32,7 +32,7 @@ const SubmittedArtefacts = () => {
   }, [])
 
   return (
-    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"} fontFamily={"Roboto"}>
+    <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"} fontFamily={"swis721-ex-bt"}>
         <Helmet>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,10 +43,11 @@ const SubmittedArtefacts = () => {
         />
         </Helmet>
         <Navbar/>
-        <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
-          <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>SUBMITTED ARTEFACTS</Heading>
+        <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
+          <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"}>SUBMITTED ARTEFACTS</Heading>
           {/* todo: add better desc */}
-          <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>A display of our curated Artefacts</Text>
+          <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>A collection of all items loaned to us
+          by Nigerian families, for the sake of the exhibition</Text>
         </VStack>
         <StaggeredGrid imgs={images}/>
         <Footer/>

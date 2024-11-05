@@ -95,7 +95,7 @@ const HomeSlide = () => {
           cursor={"pointer"}
           _hover={{ padding: "0.5em 2.5em" }}
           zIndex={4}>
-          <Text fontFamily={"Roboto"} letterSpacing={"3px"}>
+          <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} letterSpacing={"3px"}>
             VIEW PROJECTS
           </Text>
           <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid} />
