@@ -28,7 +28,7 @@ const StoreAdmin = () => {
       alignItems={"center"}
       gap={"1em"}>
       <NavbarAdmin />
-      <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+      <Heading letterSpacing={"5px"}>
         STORE ADMIN
       </Heading>
       <Tabs w={"95%"}>

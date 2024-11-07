@@ -31,9 +31,9 @@ const TeamCard = ({member, flip}: Props) => {
                 {member?.photo !== undefined && <Image src={member?.photo} objectFit={"cover"} width={{base: "65%", sm: "30%", lg: "50%"}} aspectRatio={"1/1"} borderRadius={"50%"} />}
             </Flex>
             <Stack direction={"column"} w={{base: "100%", lg: "48%"}} align={{base: "center", lg: flip ? "end" : "start"}}>
-                <Heading w={{base: "95%", lg: "auto"}} textAlign={{base: "center", lg: "left"}} size={"lg"} fontFamily={"Roboto"} letterSpacing={"1px"}>{member?.name}</Heading>
-                <Text w={{base: "95%", lg: "auto"}} textAlign={{base: "center", lg: "left"}} fontFamily={"Roboto-Light"} fontSize={"1.25em"}>{member?.role}</Text>
-                <Text w={{base: "90%", lg: "auto"}} fontFamily={"Roboto"} fontSize={{base: "0.7em", md: "0.8em", lg: "0.7em"}} textAlign={{base: "center", lg: flip ? "end" : "start"}}>{member?.description}.</Text>
+                <Heading w={{base: "95%", lg: "auto"}} textAlign={{base: "center", lg: "left"}} size={"lg"} letterSpacing={"1px"}>{member?.name}</Heading>
+                <Text w={{base: "95%", lg: "auto"}} textAlign={{base: "center", lg: "left"}} fontSize={"1.25em"}>{member?.role}</Text>
+                <Text w={{base: "90%", lg: "auto"}} fontSize={{base: "0.7em", md: "0.8em", lg: "0.7em"}} textAlign={{base: "center", lg: flip ? "end" : "start"}}>{member?.description}.</Text>
             </Stack>
         </Stack>
         <Box width={"50%"} h={"0.5px"} bg={"#2c2c2c"}></Box>

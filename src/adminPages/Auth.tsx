@@ -55,17 +55,17 @@ const Auth = () => {
   return (
     <VStack w={"100vw"} h={"100vh"}>
       <Container display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
-        <Heading fontFamily={"Roboto"}>WMASN ADMIN LOGIN</Heading>
+        <Heading>WMASN ADMIN LOGIN</Heading>
         <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-          <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Email</FormLabel>
-          <Input value={user} onChange={(e) => {setUser(e.target.value)}} name="User" id="User" type={"text"} fontFamily={"Roboto"} placeholder="Enter email..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+          <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Email</FormLabel>
+          <Input value={user} onChange={(e) => {setUser(e.target.value)}} name="User" id="User" type={"text"} placeholder="Enter email..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
         </Box>
         <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-          <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Password</FormLabel>
-          <Input value={password} onChange={(e) => {setPassword(e.target.value)}} name="Password" id="Password" type={"password"} fontFamily={"Roboto"} placeholder="Enter password..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+          <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Password</FormLabel>
+          <Input value={password} onChange={(e) => {setPassword(e.target.value)}} name="Password" id="Password" type={"password"} placeholder="Enter password..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
         </Box>
         <Button isLoading={loading} mb={"1em"}  onClick={() => {setLoading(true); signIn()}} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} w={"13em"} padding={"0.75em 0em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{ bg: "#2F3F89" }}>
-          <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>
+          <Text letterSpacing={"3px"}>
             LOG IN
           </Text>
         </Button>

@@ -61,15 +61,14 @@ const Success = () => {
         borderRadius={"2em"}
         gap={"0.5em"}>
         <AlertIcon />
-        <AlertTitle fontFamily={"Roboto-Bold"}>Payment Successful</AlertTitle>
-        <AlertDescription fontFamily={"Roboto"}>
+        <AlertTitle>Payment Successful</AlertTitle>
+        <AlertDescription>
           Thank you! Your payment was processed successfully. You'll receive a
           confirmation soon.
         </AlertDescription>
         <Link
           fontSize={"0.8em"}
           textDecoration={"underline"}
-          fontFamily={"Roboto"}
           as={ReactRouterLink}
           to="/">
           Return to home

@@ -85,14 +85,14 @@ const EditSection = ({index, setSectionList, sectionList, section}: Props) => {
           <Box display={"flex"} w={"50%"} flexDirection={"column"}>
             {imgFile1 && <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={URL.createObjectURL(imgFile1)}/>}
             <Input type="file" ref={imgRef1} onChange={() => {setImgFile1(imgRef1?.current?.files?.[0])}}/>
-            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               SECTION IMAGE 1 (Optional)
             </Box>
           </Box>
           <Box display={"flex"} w={"50%"} flexDirection={"column"}>
             {imgFile2 && <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={URL.createObjectURL(imgFile2)}/>}
             <Input type="file" ref={imgRef2} onChange={() => {setImgFile2(imgRef2?.current?.files?.[0])}}/>
-            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               SECTION IMAGE 2 (Optional)
             </Box>
           </Box>

@@ -1,4 +1,4 @@
-import { addDoc, arrayRemove, collection, deleteDoc, doc, getDocs, query, updateDoc } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc } from "firebase/firestore"
 import { db, storage } from "../firebase/firebase"
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
 import { v4 as uuid } from 'uuid';
@@ -68,7 +68,7 @@ export const getProjects = async () => {
 export const addNewProject = async (project: FirebaseProject) => {
   const colRef = collection(db, "projects")
   try {
-    const mainImgPath = project.img ? `projects/${project.img.name}/${uuid}` : ""
+    const mainImgPath = project.img ? `projects/${project.img.name}/${uuid()}` : ""
     const mainImg = project.img ? await getImageUrl(project.img, mainImgPath) : ""
     const formattedSections = project?.sections ? await getFormattedSections(project.sections) : []
     await addDoc(colRef, {
@@ -140,7 +140,7 @@ const replaceProjectImg = async (path: string, file: File) => {
   for (const itemRef of data.items) {
     await deleteObject(itemRef);
   }
-  const newPath = `projects/${file.name}/${uuid}`
+  const newPath = `projects/${file.name}/${uuid()}`
   const imgRef = ref(storage, newPath)
   const res = await uploadBytes(imgRef, file)
   const src = await getDownloadURL(res.ref)
@@ -197,8 +197,10 @@ const getFormattedSections = async (sections: FirebaseSectionContent[]) => {
 }
 
 const getEditedSections = async (sections: SectionContent[]) => {
+  console.log(sections)
   const formattedSections: SectionContent[] = []
   for (const section of sections){
+    console.log("switch", section.img1)
     let imagePath1 = `projects/sections/${uuid()}`
     const imagePath2 = `projects/sections/${uuid()}`
     let imageSrc1: string | undefined

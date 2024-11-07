@@ -101,7 +101,7 @@ const ShippingAdmin = () => {
         transition={"all 300ms ease-in-out"}
         _hover={{ bg: "#2F3F89" }}>
         <Text
-          fontFamily={"Roboto-Light"}
+        
           letterSpacing={"3px"}>
           ADD SHIPPING
         </Text>
@@ -116,17 +116,17 @@ const ShippingAdmin = () => {
         <ModalContent>
           <ModalBody>
             <VStack w={"100%"}>
-              <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+              <Heading letterSpacing={"5px"}>
                 STORE ADMIN
               </Heading>
               <VStack w={"90%"} spacing={"1.1em"}>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
-                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} fontFamily={"Roboto"} placeholder="Name of shipping type" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
+                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} placeholder="Name of shipping type" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
-                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
+                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -135,8 +135,8 @@ const ShippingAdmin = () => {
                   </NumberInput>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Earliest Shipping Time (Days)</FormLabel>
-                  <NumberInput min={0} step={1} precision={0} value={shipMin} onChange={(valueString) => {setShipMin(valueString)}} name="ShipMin" id="ShipMin" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Earliest Shipping Time (Days)</FormLabel>
+                  <NumberInput min={0} step={1} precision={0} value={shipMin} onChange={(valueString) => {setShipMin(valueString)}} name="ShipMin" id="ShipMin" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -145,8 +145,8 @@ const ShippingAdmin = () => {
                   </NumberInput>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Latest Shipping Time (Days)</FormLabel>
-                  <NumberInput min={0} step={1} precision={0} value={shipMax} onChange={(valueString) => {setShipMax(valueString)}} name="ShipMax" id="ShipMax" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Latest Shipping Time (Days)</FormLabel>
+                  <NumberInput min={0} step={1} precision={0} value={shipMax} onChange={(valueString) => {setShipMax(valueString)}} name="ShipMax" id="ShipMax" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -155,7 +155,7 @@ const ShippingAdmin = () => {
                   </NumberInput>
                 </Box>
                 <Box as="button" onClick={addShipping}  borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                  <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>ADD NEW SHIPPING</Text>
+                  <Text letterSpacing={"3px"}>ADD NEW SHIPPING</Text>
                 </Box>
               </VStack>
             </VStack>

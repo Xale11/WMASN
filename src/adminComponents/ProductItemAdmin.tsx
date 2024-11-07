@@ -130,17 +130,17 @@ const ProductItemAdmin = ({item}: Props) => {
         <Image w={"100%"} h={"100%"} src={item.img1} objectFit={"contain"} alt={"Image of product"}/>
       </Box>
       <VStack w={"100%"} h={"20%"} spacing={"0em"}>
-        <Text fontFamily={"Roboto"}>{item.name}</Text>
-        <Text fontFamily={"Roboto"}>£{item.price}</Text>
-        <Text fontFamily={"Roboto"}>Stock: {item?.stock}</Text>
+        <Text>{item.name}</Text>
+        <Text>£{item.price}</Text>
+        <Text>Stock: {item?.stock}</Text>
       </VStack>
       <HStack w={"100%"} h={"15%"} spacing={"0em"}>
-        <Box onClick={onOpen} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"50%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+        <Box onClick={onOpen} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"50%"} textAlign={"center"} color={"white"}>
           EDIT ITEM
         </Box>
         <Popover>
           <PopoverTrigger>
-            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#FD2F2F"} h={"100%"} w={"50%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#FD2F2F"} h={"100%"} w={"50%"} textAlign={"center"} color={"white"}>
               REMOVE ITEM
             </Box>
           </PopoverTrigger>
@@ -163,7 +163,7 @@ const ProductItemAdmin = ({item}: Props) => {
         <ModalContent>
           <ModalBody>
             <VStack w={"100%"}>
-              <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+              <Heading letterSpacing={"5px"}>
                 EDIT ITEM
               </Heading>
               <HStack>
@@ -172,7 +172,7 @@ const ProductItemAdmin = ({item}: Props) => {
                     <Image src={item.img1} alt="Image of the product" w={"100%"} aspectRatio={"1/1"} objectFit={"contain"}/>
                   </Box>
                   <Input type="file" ref={img1Ref}/>
-                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                     IMAGE 1 (Primary)
                   </Box>
                 </Box>
@@ -182,22 +182,22 @@ const ProductItemAdmin = ({item}: Props) => {
                     {item.img2 !== undefined && <Image src={item.img2} alt="Image of the product" w={"100%"} aspectRatio={"1/1"} objectFit={"contain"}/>}
                   </Box>
                   <Input type="file" ref={img2Ref}/>
-                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                     IMAGE 2 (Secondary)
                   </Box>
-                  <Box onClick={removeConfirm} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#FD2F2F"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  <Box onClick={removeConfirm} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#FD2F2F"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                     REMOVE IMAGE
                   </Box>
                 </Box>
               </HStack>
               <VStack w={"90%"} spacing={"1.1em"}>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
-                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} fontFamily={"Roboto"} placeholder="Name of product" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
+                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} placeholder="Name of product" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
-                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
+                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -206,12 +206,12 @@ const ProductItemAdmin = ({item}: Props) => {
                   </NumberInput>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
-                  <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Product description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
+                  <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} placeholder="Product description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Stock</FormLabel>
-                  <NumberInput step={1} precision={0} value={stock} onChange={(valueString) => {setStock(valueString)}} name="Stock" id="Stock" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Stock</FormLabel>
+                  <NumberInput step={1} precision={0} value={stock} onChange={(valueString) => {setStock(valueString)}} name="Stock" id="Stock" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -220,7 +220,7 @@ const ProductItemAdmin = ({item}: Props) => {
                   </NumberInput>
                 </Box>
                 <Box as="button" onClick={editItem} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                  <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+                  <Text letterSpacing={"3px"}>SAVE</Text>
                 </Box>
               </VStack>
             </VStack>

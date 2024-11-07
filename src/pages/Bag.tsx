@@ -99,13 +99,13 @@ const Bag = () => {
           align={"start"}
           spacing={"0.5em"}>
           <Heading
-            fontFamily={"Roboto"}
+          
             letterSpacing={"5px"}
             color={"#2c2c2c"}>
             BAG
           </Heading>
           <Box width={"100%"} h={"1px"} bg={"#cfcfcf"}></Box>
-          {bag.length === 0 && <Text fontFamily={"Roboto-Light"}> Bag is empty</Text>}
+          {bag.length === 0 && <Text> Bag is empty</Text>}
           {bag.map((item) => {
             return <BagItem item={item} />;
           })}
@@ -115,20 +115,20 @@ const Bag = () => {
           align={"start"}
           spacing={"0.5em"}>
           <Heading
-            fontFamily={"Roboto"}
+          
             letterSpacing={"5px"}
             color={"#2c2c2c"}>
             SUMMARY
           </Heading>
           <Box width={"100%"} h={"1px"} bg={"#cfcfcf"}></Box>
           <VStack align={"start"} spacing={"0"}>
-            <Text fontFamily={"Roboto-Light"} color={"#2c2c2c"}>
+            <Text color={"#2c2c2c"}>
               {numItems} Items
             </Text>
-            <Text fontFamily={"Roboto-Light"} color={"#2c2c2c"}>
+            <Text color={"#2c2c2c"}>
               Subtotal: £{subtotal}
             </Text>
-            <Text fontFamily={"Roboto-Light"} color={"#2c2c2c"}>
+            <Text color={"#2c2c2c"}>
               Delivery: From £2.99
             </Text>
           </VStack>
@@ -146,7 +146,7 @@ const Bag = () => {
             color={"white"}
             transition={"all 300ms ease-in-out"}
             _hover={{ padding: "1em 3em" }}>
-            <Text fontFamily={"Roboto-Light"} letterSpacing={"5px"}>
+            <Text letterSpacing={"5px"}>
               GO TO CHECKOUT
             </Text>
           </Box>

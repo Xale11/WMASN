@@ -186,13 +186,13 @@ const ProductsAdmin = () => {
         <Popover>
           <PopoverTrigger>
             <Box as="button" borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} w={"13em"} padding={"0.75em 0em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{ bg: "#2F3F89" }}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>
+              <Text letterSpacing={"3px"}>
                 SORT
               </Text>
               <Icon fontSize={"1.5em"} as={GoChevronDown} />
             </Box>
           </PopoverTrigger>
-          <PopoverContent w={"13em"} border={"1px solid #2c2c2c"} borderRadius={"0em"} fontFamily={"Roboto-Light"} ref={popoverRef}>
+          <PopoverContent w={"13em"} border={"1px solid #2c2c2c"} borderRadius={"0em"} ref={popoverRef}>
             <Stack direction={"column"} spacing={{ base: "1em", lg: "0em" }}>
               <Text onClick={() => {sortItems("a-z");}} w={"100%"} _hover={{ bg: "lightgray" }} cursor={"pointer"}>
                 Alphabetical (A-Z)
@@ -221,7 +221,7 @@ const ProductsAdmin = () => {
             onChange={(e) => {
               setSearch(e.target.value);
             }}
-            fontFamily={"Roboto"}
+          
             type="text"
             w={"100%"}
             h={"100%"}
@@ -264,7 +264,7 @@ const ProductsAdmin = () => {
         transition={"all 300ms ease-in-out"}
         _hover={{ bg: "#2F3F89" }}>
         <Text
-          fontFamily={"Roboto-Light"}
+        
           letterSpacing={"3px"}>
           ADD ITEM
         </Text>
@@ -283,32 +283,32 @@ const ProductsAdmin = () => {
         <ModalContent>
           <ModalBody>
             <VStack w={"100%"}>
-              <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+              <Heading letterSpacing={"5px"}>
                 STORE ADMIN
               </Heading>
               <HStack>
                 <Box display={"flex"} flexDirection={"column"}>
                   <Input type="file" ref={img1Ref}/>
-                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                     IMAGE 1 (Primary)
                   </Box>
                 </Box>
 
                 <Box display={"flex"} flexDirection={"column"}>
                   <Input type="file" ref={img2Ref}/>
-                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                  <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                     IMAGE 2 (Secondary)
                   </Box>
                 </Box>
               </HStack>
               <VStack w={"90%"} spacing={"1.1em"}>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
-                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} fontFamily={"Roboto"} placeholder="Name of product" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Name</FormLabel>
+                  <Input value={name} onChange={(e) => {setName(e.target.value)}} name="Name" id="Name" type={"text"} placeholder="Name of product" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
-                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Price (£)</FormLabel>
+                  <NumberInput step={0.01} precision={2} value={price} onChange={(valueString) => {setPrice(valueString)}} name="Price" id="Price" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -317,12 +317,12 @@ const ProductsAdmin = () => {
                   </NumberInput>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
-                  <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Product description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
+                  <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} placeholder="Product description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
                 <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                  <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Stock</FormLabel>
-                  <NumberInput step={1} precision={0} value={stock} onChange={(valueString) => {setStock(valueString)}} name="Stock" id="Stock" fontFamily={"Roboto"} border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
+                  <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Stock</FormLabel>
+                  <NumberInput step={1} precision={0} value={stock} onChange={(valueString) => {setStock(valueString)}} name="Stock" id="Stock" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired>
                     <NumberInputField _focus={{boxShadow: "0px 0px 0px black"}} outline={"none"} border={"none"}/>
                     <NumberInputStepper>
                       <NumberIncrementStepper/>
@@ -331,7 +331,7 @@ const ProductsAdmin = () => {
                   </NumberInput>
                 </Box>
                 <Box as="button" onClick={addItem} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                  <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+                  <Text letterSpacing={"3px"}>SAVE</Text>
                 </Box>
               </VStack>
             </VStack>

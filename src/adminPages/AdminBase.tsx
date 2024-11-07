@@ -13,7 +13,7 @@ const AdminBase = () => {
   return (
     <Box bg={"white"} w={"100vw"} h={"100vh"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
       <NavbarAdmin />
-      <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+      <Heading letterSpacing={"5px"}>
         STORE ADMIN
       </Heading>
       <Tabs w={"95%"}>

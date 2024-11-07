@@ -65,7 +65,7 @@ const HomeSlide = () => {
         left={"0"}
         right={"0"}
         margin={"0 auto"}>
-        <Text fontFamily={"Roboto"} letterSpacing={"3px"}>
+        <Text letterSpacing={"3px"}>
           VIEW PROJECTS
         </Text>
         <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid} />
@@ -118,7 +118,7 @@ const HomeSlide = () => {
           cursor={"pointer"}
           _hover={{ padding: "0.5em 2.5em" }}
           zIndex={4}>
-          <Text fontFamily={"Roboto"} letterSpacing={"3px"}>
+          <Text letterSpacing={"3px"}>
             NEW EXHIBITION
           </Text>
           <Icon fontSize={"1.5em"} as={LiaLongArrowAltRightSolid} />

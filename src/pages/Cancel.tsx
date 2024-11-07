@@ -39,15 +39,15 @@ const Cancel = () => {
         borderRadius={"2em"}
         gap={"0.5em"}>
         <AlertIcon />
-        <AlertTitle fontFamily={"Roboto-Bold"}>Payment Cancelled</AlertTitle>
-        <AlertDescription fontFamily={"Roboto"}>
+        <AlertTitle>Payment Cancelled</AlertTitle>
+        <AlertDescription>
           Your payment has been cancelled. If this was a mistake or if you need
           further assistance, please contact our support team.
         </AlertDescription>
         <Link
           fontSize={"0.8em"}
           textDecoration={"underline"}
-          fontFamily={"Roboto"}
+        
           as={ReactRouterLink}
           to="/">
           Return to home

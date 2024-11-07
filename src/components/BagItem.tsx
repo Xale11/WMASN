@@ -31,13 +31,13 @@ const BagItem = ({item}: Props) => {
           <Image src={item.price_data.product_data.images[0]} w={"100"} h={"100%"} alt='Image of product in cart'/>
         </Box>
         <VStack align={"start"} h={"100%"} spacing={"0em"}>
-          <Text fontFamily={"Roboto"} color={"#2c2c2c"}>
+          <Text color={"#2c2c2c"}>
             {item?.price_data?.product_data?.name.toUpperCase()}
           </Text>
           <Popover placement="right">
             <PopoverTrigger>
               <HStack cursor={"pointer"}>
-                <Text fontFamily={"Roboto-Light"} color={"#2c2c2c"}>
+                <Text color={"#2c2c2c"}>
                   Quantity: {item.quantity}
                 </Text>
                 <Icon as={IoChevronDown} />
@@ -74,10 +74,10 @@ const BagItem = ({item}: Props) => {
             </PopoverContent>
           </Popover>
 
-          <Text fontFamily={"Roboto-Light"} color={"#2c2c2c"}>
+          <Text color={"#2c2c2c"}>
             Unit Price: £{(item?.price_data?.unit_amount / 100).toFixed(2)}
           </Text>
-          <Text fontFamily={"Roboto"} color={"#2F3F89"}>
+          <Text color={"#2F3F89"}>
             Total Price: £
             {((item?.price_data?.unit_amount * item?.quantity) / 100).toFixed(
               2
@@ -94,7 +94,7 @@ const BagItem = ({item}: Props) => {
               removeFromBag(item);
             }}>
             <Icon as={BiSolidTrashAlt} />
-            <Text fontSize={"0.9em"} fontFamily={"Roboto-Light"}>
+            <Text fontSize={"0.9em"}>
               Remove
             </Text>
           </HStack>

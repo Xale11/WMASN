@@ -43,7 +43,6 @@ const NavbarAdmin = () => {
       bg={"#2F3F89"}
       display={"flex"}
       alignItems={"center"}
-      fontFamily={"Roboto"}
       position={"relative"}
       zIndex={3}>
       <Box

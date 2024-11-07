@@ -200,7 +200,6 @@ export default ProductPage;
         <Button
           onClick={buyNow}
           w={"95%"}
-          fontFamily={"Roboto-Light"}
           bg={"#2c2c2c"}
           letterSpacing={"5px"}
           color={"white"}>
@@ -208,7 +207,6 @@ export default ProductPage;
         </Button>
         <Text
           w={"95%"}
-          fontFamily={"Roboto-Light"}
           textAlign={"center"}
           color={"#2c2c2c"}
           whiteSpace={"pre-wrap"}

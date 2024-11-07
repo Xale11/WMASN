@@ -124,7 +124,7 @@ const EditProject = ({project, index}: Props) => {
       <Button onClick={onOpen} bg={"green"} color={"white"}>Edit Project</Button>
       <Card transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.7)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "24%"}} aspectRatio={"3 / 2"} bg={"black"} backgroundImage={project.img} backgroundSize={"cover"} backgroundRepeat={"no-repeat"} backgroundPosition={"center"}>
         <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"100%"} height={"45%"} bg={"#333333"} opacity={"95%"} marginBottom={"1em"}>
-          <Heading fontFamily={"Roboto"} w={"90%"} size={"md"} opacity={"100%"} color={"white"}>{project.name}</Heading>
+          <Heading  w={"90%"} size={"md"} opacity={"100%"} color={"white"}>{project.name}</Heading>
         </Box>
       </Card>
       <Modal isOpen={isOpen} onClose={onClose} size={"6xl"}>
@@ -157,7 +157,7 @@ const EditProject = ({project, index}: Props) => {
             <HStack>
               <Box display={"flex"} flexDirection={"column"}>
                 <Input type="file" ref={imgRef}/>
-                <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                   IMAGE 1 (Primary)
                 </Box>
               </Box>

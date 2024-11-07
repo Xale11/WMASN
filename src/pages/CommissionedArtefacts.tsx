@@ -1,11 +1,10 @@
-import { Box, Button, ButtonGroup, Grid, Heading, HStack, Image, Text, useToast, VStack } from '@chakra-ui/react'
+import { Box, Grid, Heading, Image, Text, useToast, VStack } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Helmet } from 'react-helmet'
 import { useEffect, useState } from 'react'
 import { GalleryImage } from '../data/GalleryImgs'
 import { getArtefactImages } from '../data/Artefacts'
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 import { PageData } from './Gallery'
 import { paginateData } from '../util/Pagination'
 
@@ -13,7 +12,6 @@ const ComissionedArtefacts = () => {
 
   const toast = useToast()
 
-  const arr = [1, 2, 3, 4, 5, 6, 7]
 
   const [page, setPage] = useState<number>(1); // current page number
   const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 8, maxPage: 1 });
@@ -104,9 +102,9 @@ const ComissionedArtefacts = () => {
 export default ComissionedArtefacts
 
 // <VStack w={"100%"} justify={"center"} m={"1.4em 0em"}>
-        //   <Heading fontFamily={"Roboto"} letterSpacing={"5px"} textAlign={"center"}>COMMISSIONED ARTEFACTS</Heading>
+        //   <Heading letterSpacing={"5px"} textAlign={"center"}>COMMISSIONED ARTEFACTS</Heading>
         //   {/* todo: add better desc */}
-        //   <Text fontFamily={"Roboto-Light"} textAlign={"center"} w={{base: "90%"}}>A display of our curated Artefacts</Text>
+        //   <Text textAlign={"center"} w={{base: "90%"}}>A display of our curated Artefacts</Text>
         // </VStack>
         // <HStack w={"100%"} justify={"center"} flexWrap={"wrap"} rowGap={"2em"}>
         //   {images.slice(pageLimits.start, pageLimits.end).map((image) => {

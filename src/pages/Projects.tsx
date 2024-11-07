@@ -30,6 +30,8 @@ const Projects = () => {
     fetchProjects()
   }, [])
 
+  console.log(projList)
+
   return (
     <Box w={"100vw"} display={"flex"} flexDir={"column"} gap={"1em"} fontFamily={"swis721-ex-bt"}>
       <Helmet>

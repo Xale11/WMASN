@@ -36,8 +36,8 @@ const EditLiveSection = ({index, setSectionList, sectionList, section}: Props) =
     }
 
     const copiedSections = [...sectionList]
-    const image1 = !imgFile1 && imgFile2 ? imgFile2 : imgFile1
-    const image2 = !imgFile1 && imgFile2 ? imgFile1 : imgFile2
+    const image1 = !imgFile1 && imgFile2 && !section.img1 ? imgFile2 : imgFile1
+    const image2 = !imgFile1 && imgFile2 && !section.img1 ? imgFile1 : imgFile2
     copiedSections[index] = {
       ...copiedSections[index],
       img1: imgSrc1,
@@ -46,6 +46,7 @@ const EditLiveSection = ({index, setSectionList, sectionList, section}: Props) =
       imgFile2: image2,
       textContent: textContent
     }
+    console.log(copiedSections)
     setSectionList(copiedSections)
     toast({
       title: "Section Updated",
@@ -101,27 +102,27 @@ const EditLiveSection = ({index, setSectionList, sectionList, section}: Props) =
         <HStack w={"48%"}>
           <Box display={"flex"} w={"50%"} flexDirection={"column"}>
             {imgFile1 ? <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={URL.createObjectURL(imgFile1)}/> : <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={imgSrc1}/>}
-            <Input type="file" ref={imgRef1} onChange={() => {setImgFile1(imgFile1)}}/>
-            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Input type="file" ref={imgRef1} onChange={() => {setImgFile1(imgRef1?.current?.files?.[0])}}/>
+            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               SECTION IMAGE 1 (Optional)
             </Box>
-            <Box onClick={() => {setImgFile1(undefined); setImgSrc1(section.img1)}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"yellow.500"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box onClick={() => {setImgFile1(undefined); setImgSrc1(section.img1)}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"yellow.500"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               Original Image
             </Box>
-            <Box onClick={() => {setImgSrc1(""); clearImg1()}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"red.500"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box onClick={() => {setImgSrc1(""); clearImg1()}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"red.500"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               Remove Image
             </Box>
           </Box>
           <Box display={"flex"} w={"50%"} flexDirection={"column"}>
             {imgFile2 ? <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={URL.createObjectURL(imgFile2)}/> : <Image mx={"auto"} aspectRatio={"1/1"} objectFit={"contain"} src={imgSrc2}/>}
-            <Input type="file" ref={imgRef2} onChange={() => {setImgFile2(imgFile2)}}/>
-            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Input type="file" ref={imgRef2} onChange={() => {setImgFile2(imgRef2?.current?.files?.[0])}}/>
+            <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               SECTION IMAGE 2 (Optional)
             </Box>
-            <Box onClick={() => {setImgFile2(undefined); setImgSrc2(section.img2)}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"yellow.500"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box onClick={() => {setImgFile2(undefined); setImgSrc2(section.img2)}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"yellow.500"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               Original Image
             </Box>
-            <Box onClick={() => {setImgSrc2(""); clearImg2()}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"red.500"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+            <Box onClick={() => {setImgSrc2(""); clearImg2()}} display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} _hover={{textDecor: "underline"}} bg={"red.500"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
               Remove Image
             </Box>
           </Box>

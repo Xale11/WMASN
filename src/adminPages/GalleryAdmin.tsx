@@ -134,7 +134,7 @@ const GalleryAdmin = () => {
   return (
     <Box bg={"white"} w={"100vw"} h={"100vh"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
       <NavbarAdmin />
-      <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+      <Heading letterSpacing={"5px"}>
         GALLERY ADMIN
       </Heading>
       <Tabs w={"95%"}>
@@ -144,7 +144,7 @@ const GalleryAdmin = () => {
         <TabPanels>
           <TabPanel display={"flex"} flexDirection={"column"} alignItems={"center"}>
             <Box mb={"1em"} as="button" onClick={onOpen} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} w={"13em"} padding={"0.75em 0em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{ bg: "#2F3F89" }}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>
+              <Text letterSpacing={"3px"}>
                 ADD NEW GALLERY PHOTO
               </Text>
             </Box>
@@ -174,29 +174,29 @@ const GalleryAdmin = () => {
               <ModalContent>
                 <ModalBody>
                   <VStack w={"100%"}>
-                    <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+                    <Heading letterSpacing={"5px"}>
                       ADD TO GALLERY
                     </Heading>
                     <HStack>
                       <Box display={"flex"} flexDirection={"column"}>
                         <Input type="file" ref={imgRef} multiple/>
-                        <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} fontFamily={"Roboto-Light"} color={"white"}>
+                        <Box display={"flex"} cursor={"pointer"} justifyContent={"center"} alignItems={"center"} bg={"#2c2c2c"} h={"100%"} w={"100%"} textAlign={"center"} color={"white"}>
                           IMAGE 1 (Primary)
                         </Box>
                       </Box>
                     </HStack>
                     <VStack w={"90%"} spacing={"1.1em"}>
                       <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                        <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Curated By</FormLabel>
-                        <Input value={by} onChange={(e) => {setBy(e.target.value)}} name="By" id="By" type={"text"} fontFamily={"Roboto"} placeholder="Name of curator" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                        <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Curated By</FormLabel>
+                        <Input value={by} onChange={(e) => {setBy(e.target.value)}} name="By" id="By" type={"text"} placeholder="Name of curator" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                       </Box>
                       <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-                        <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
-                        <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} fontFamily={"Roboto"} placeholder="Image Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+                        <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">Description</FormLabel>
+                        <Input value={description} onChange={(e) => {setDescription(e.target.value)}} name="Description" id="Description" type={"text"} placeholder="Image Description" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                       </Box>
                       <LoadButton loading={loading}>
                         <Box as="button" onClick={addNewGalleryImage} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-                          <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+                          <Text letterSpacing={"3px"}>SAVE</Text>
                         </Box>
                       </LoadButton>
                       

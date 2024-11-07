@@ -120,7 +120,7 @@ const HomeAdmin = () => {
   return (
     <Box bg={"white"} w={"100vw"} h={"100vh"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"1em"}>
       <NavbarAdmin />
-      <Heading fontFamily={"Roboto"} letterSpacing={"5px"}>
+      <Heading  letterSpacing={"5px"}>
         HOME ADMIN
       </Heading>
       <Tabs w={"95%"}>
@@ -131,28 +131,28 @@ const HomeAdmin = () => {
         <TabPanels>
           <TabPanel display={"flex"} flexDir={"column"} justifyContent={"center"}>
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-              <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">ABOUT US INTRO</FormLabel>
-              <Input as={"textarea"} whiteSpace={"pre-wrap"} h={"10em"} value={intro} onChange={(e) => {setIntro(e.target.value)}} name="About Us Intro" id="About Us Intro" type={"text"} fontFamily={"Roboto"} placeholder="Message here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">ABOUT US INTRO</FormLabel>
+              <Input as={"textarea"} whiteSpace={"pre-wrap"} h={"10em"} value={intro} onChange={(e) => {setIntro(e.target.value)}} name="About Us Intro" id="About Us Intro" type={"text"}  placeholder="Message here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
             <Box as="button" onClick={updateIntro} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+              <Text letterSpacing={"3px"}>SAVE</Text>
             </Box>
           </TabPanel>
           <TabPanel display={"flex"} flexDir={"column"} justifyContent={"center"} gap={"1em"}>
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-              <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">EMAIL</FormLabel>
-              <Input whiteSpace={"pre-wrap"} value={email} onChange={(e) => {setEmail(e.target.value)}} name="EMAIL" id="EMAIL" type={"text"} fontFamily={"Roboto"} placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">EMAIL</FormLabel>
+              <Input whiteSpace={"pre-wrap"} value={email} onChange={(e) => {setEmail(e.target.value)}} name="EMAIL" id="EMAIL" type={"text"}  placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-              <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">NUMBER</FormLabel>
-              <Input whiteSpace={"pre-wrap"} value={number} onChange={(e) => {setNumber(e.target.value)}} name="NUMBER" id="NUMBER" type={"text"} fontFamily={"Roboto"} placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">NUMBER</FormLabel>
+              <Input whiteSpace={"pre-wrap"} value={number} onChange={(e) => {setNumber(e.target.value)}} name="NUMBER" id="NUMBER" type={"text"}  placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
             <Box display={"flex"} flexDirection={"column"} borderBottom={"2px solid #2c2c2c"} width={"100%"}>
-              <FormLabel m={"0px"} fontFamily={"Roboto-Light"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">LOCATION</FormLabel>
-              <Input whiteSpace={"pre-wrap"} value={location} onChange={(e) => {setLocation(e.target.value)}} name="LOCATION" id="LOCATION" type={"text"} fontFamily={"Roboto"} placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
+              <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">LOCATION</FormLabel>
+              <Input whiteSpace={"pre-wrap"} value={location} onChange={(e) => {setLocation(e.target.value)}} name="LOCATION" id="LOCATION" type={"text"}  placeholder="Type here..." border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
             </Box>
             <Box as="button" onClick={updateContactDets} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
-              <Text fontFamily={"Roboto-Light"} letterSpacing={"3px"}>SAVE</Text>
+              <Text letterSpacing={"3px"}>SAVE</Text>
             </Box>
           </TabPanel>
         </TabPanels>

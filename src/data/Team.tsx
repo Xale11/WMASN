@@ -3,9 +3,10 @@ import Israel from "../assets/Israel.jpg"
 import Tunmiji from "../assets/Tunmiji.jpg"
 import Bewaji from "../assets/Bewaji.jpg"
 import Paul from "../assets/Paul2.jpg"
-import { arrayUnion, collection, doc, getDocs, query, updateDoc } from "firebase/firestore"
+import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore"
 import { db, storage } from "../firebase/firebase"
-import { deleteObject, getDownloadURL, listAll, ref, StorageReference, uploadBytes } from "firebase/storage"
+import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
+import { v4 as uuid } from 'uuid';
 
 export interface FirebaseAboutInfo {
     id?: string;
@@ -19,6 +20,7 @@ export interface TeamMember {
     role: string;
     description: string;
     photo: string | undefined;
+    photoPath?: string;
     contact: ContactType;
 }
 
@@ -42,34 +44,18 @@ interface ContactType {
 
 export const getAboutUsInfo = async () => {
 const res: FirebaseAboutInfo[] = []
-let i = 0
   let isError = false
   try {
     const q = query(collection(db, "about"));
     const data = await getDocs(q);
     for (const doc of data.docs) {
       const data = doc.data();
-      const teamWithPhotos: TeamMember[] = []
-      for (const member of data.theTeam){
-        const imgRes = await getTeamImages(`${i}`)
-        if (imgRes === "error"){
-            isError = true
-        } else {
-            teamWithPhotos.push({
-                ...member,
-                photo: imgRes
-            })
-        }
-        i++
-      }
-    //   console.log(teamWithPhotos)
       res.push({
           id: doc.id,
           ourStory: data.ourStory,
           subtitle: data.subtitle,
-          theTeam: teamWithPhotos
+          theTeam: data.theTeam
       });
-      // console.log("success");
     }
   } catch (error) {
     console.error(error);
@@ -80,25 +66,6 @@ let i = 0
     return "error";
   }
   return res;
-}
-
-const getTeamImages = async (name: string) => {
-    const arr1: StorageReference[] = [];
-    const photoRef1 = ref(storage, `team/${name}`);
-    try {
-        await listAll(photoRef1)
-            .then((res) => {
-                res.items.forEach(async (item: StorageReference) => {
-                    arr1.push(item)
-                })
-            });
-        // console.log(id, arr1, arr2);
-    } catch (error) {
-        console.error(error)
-        return "error"
-    }
-    const res1 = arr1.length === 0 ? undefined : await getDownloadURL(arr1[0]);
-    return res1
 }
 
 export const editAboutUsText = async (item: FirebaseAboutInfo) => {
@@ -116,38 +83,16 @@ export const editAboutUsText = async (item: FirebaseAboutInfo) => {
     return "success"
   }
 
-export const addTeamMember = async (member: TeamMember, id: string, file: File | undefined, index: number) => {
+export const addTeamMember = async (members: TeamMember[], member: TeamMember, id: string, file: File | undefined) => {
     const updateRef = doc(db, "about", `${id}`)
-    try {
-        await updateDoc(updateRef, {
-        theTeam: arrayUnion({
-            name: member.name,
-            role: member.role,
-            description: member.description,
-            contact: {
-                linkedin: {
-                    show: member.contact.linkedin.show,
-                    handle: member.contact.linkedin.handle,
-                    link: member.contact.linkedin.link
-                },
-                instagram: {
-                    show: member.contact.instagram.show,
-                    handle: member.contact.instagram.handle,
-                    link: member.contact.instagram.link,
-                },
-                x: {
-                    show: member.contact.x.show,
-                    handle: member.contact.x.handle,
-                    link: member.contact.x.link,
-                },
-            },
-        })
-        })
+    const mainImgPath = file ? `projects/${file.name}/${uuid()}` : ""
 
-        if (file !== undefined){
-            const imgRef = ref(storage, `team/${index}/${file.name}`)
-            await uploadBytes(imgRef, file)
-        }
+    try {
+        const imgSrc = file ? await getImageUrl(file, mainImgPath) : ""
+        console.log(file)
+        await updateDoc(updateRef, {
+        theTeam: [...members, {...member, photo: imgSrc, photoPath: mainImgPath}]
+        })
         
     } catch (error) {
         console.error(error)
@@ -158,12 +103,16 @@ export const addTeamMember = async (member: TeamMember, id: string, file: File |
 
 export const editTeamMember = async (team: TeamMember[], id: string, file: File | undefined, index: number) => {
     const updateRef = doc(db, "about", `${id}`)
+    const mainImgPath = file ? `projects/${file.name}/${uuid()}` : ""
     try {
+        const imgSrc = file ? await getImageUrl(file, mainImgPath) : undefined
         await updateDoc(updateRef, {
-        theTeam: team.map((item) => {
+        theTeam: team.map((item, i) => {
             return ({
                 name: item.name,
                 role: item.role,
+                photo: i === index ? imgSrc ?? item.photo : item.photo,
+                photoPath: i === index ? mainImgPath ?? item.photoPath : item.photoPath,
                 description: item.description,
                 contact: {
                     linkedin: {
@@ -198,6 +147,23 @@ export const editTeamMember = async (team: TeamMember[], id: string, file: File 
     return "success"
 }
 
+export const deleteTeamMember = async (team: TeamMember[], member: TeamMember, id: string) => {
+    const updateRef = doc(db, "about", `${id}`)
+    console.log(team, member)
+    try {
+        await updateDoc(updateRef, {
+        theTeam: team
+        })
+
+        if (member.photoPath) await removeTeamImg(member.photoPath)
+        
+    } catch (error) {
+        console.error(error)
+        return "error"
+    }
+    return "success"
+}
+
 const replaceTeamImg = async (path: string, file: File) => {
     const data = await listAll(ref(storage, path))
     for (const itemRef of data.items) {
@@ -207,9 +173,16 @@ const replaceTeamImg = async (path: string, file: File) => {
     await uploadBytes(imgRef, file)
 }
 
-export const removeTeamImg = async (index: number) => {
+  const getImageUrl = async (image: File, path: string) => {
+    const imageRef = ref(storage, `${path}`)
+    const res = await uploadBytes(imageRef, image)
+    const src = await getDownloadURL(res.ref)
+    return src
+  }
+
+  export const removeTeamImg = async (path: string) => {
     try {
-      const data = await listAll(ref(storage, `team/${index}`))
+      const data = await listAll(ref(storage, path))
       for (const itemRef of data.items) {
         await deleteObject(itemRef);
       }
