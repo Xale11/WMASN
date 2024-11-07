@@ -1,21 +1,17 @@
-import { Box, Grid, Heading, Image, Text, useToast, VStack } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Grid, Heading, Image, Text, useToast, VStack } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Helmet } from 'react-helmet'
 import { useEffect, useState } from 'react'
 import { GalleryImage } from '../data/GalleryImgs'
 import { getArtefactImages } from '../data/Artefacts'
-import { PageData } from './Gallery'
-import { paginateData } from '../util/Pagination'
 
 const ComissionedArtefacts = () => {
 
   const toast = useToast()
 
-
-  const [page, setPage] = useState<number>(1); // current page number
-  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 8, maxPage: 1 });
   const [images, setImages] = useState<GalleryImage[]>([])
+  const [numImgs, setNumImgs] = useState<number>(4)
 
   const fetchArtefactImages = async () => {
     const res = await getArtefactImages("commissioned")
@@ -35,34 +31,6 @@ const ComissionedArtefacts = () => {
     fetchArtefactImages()
   }, [])
 
-  const setPageView = (num: number) => {
-    const pageData = paginateData(num, 8, images.length);
-    setPage(num);
-    setPageLimits(pageData);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const nextPage = () => {
-    if (page === pageLimits.maxPage) {
-      return;
-    } else {
-      setPage((prev) => prev + 1);
-      setPageView(page + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (page === 1) {
-      return;
-    } else {
-      setPage((prev) => prev - 1);
-      setPageView(page - 1);
-    }
-  };
-
-  useEffect(() => {
-    setPageView(1)
-  }, [images])
 
   return (
     <Box bg={"white"} w={"100vw"} position={"relative"} overflowX={"hidden"} display={"flex"} flexDirection={"column"} alignItems={"start"} gap={"1em"} fontFamily={"swis721-ex-bt"}>
@@ -81,19 +49,22 @@ const ComissionedArtefacts = () => {
           {/* todo: add better desc */}
           <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>A display of our curated Artefacts</Text>
         </VStack>
-        <Grid w={"100%"} templateColumns={"repeat(2, 1fr)"} gridGap={3}>
-          {images.map((image) => {
+        <Grid w={"100%"} templateColumns={{base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)"}} gridGap={3}>
+          {images.slice(0, numImgs).map((image) => {
             return (
               <VStack w={"100%"}>
                 <VStack width={"70%"} aspectRatio={"3/2"} justify={"end"} spacing={0}>
                   <Image loading='lazy' src={image.src} w={"100%"} h={"80%"}/>
-                  <Box width={"100%"} bg={"#2F3F89"} minH={"20%"} transition={"all 300ms ease-in-out"} _hover={{minH: "27%"}} color={"white"} p={1} fontSize={"lg"}>{image.description}</Box>
+                  <Box width={"100%"} bg={"#2F3F89"} minH={"20%"} transition={"all 300ms ease-in-out"} _hover={{minH: "27%"}} color={"white"} p={1} fontSize={{base: "xs", md: "md", lg: "lg"}}>{image.description}</Box>
                 </VStack>
               </VStack>
             )
           })}
         </Grid>
-        
+        <ButtonGroup mx={"auto"}>
+          <Button borderRadius={0} display={numImgs >= images.length ? "none" : "block"} onClick={() => setNumImgs(num => num + 4)} bg={"#2F3F89"} color={"white"}>Show More</Button>
+          <Button borderRadius={0} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Scroll To Top</Button>
+        </ButtonGroup>
         <Footer/>
     </Box>
   )

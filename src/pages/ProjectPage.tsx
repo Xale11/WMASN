@@ -22,7 +22,7 @@ const ProjectPage = ({project}: Props) => {
             content="Key details of our exhibiton. What Makes a Space Nigerian (W.M.A.S.N) explores Nigerian architecture through speculative exhibitions." 
         />
         </Helmet>
-        <Heading w={"90%"} size={"lg"} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} textAlign={"center"}>{project.name}</Heading>
+        <Heading w={"90%"} size={"lg"} mt={"1em"} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} textAlign={"center"}>{project.name}</Heading>
         <Box maxW={{base: "50vw", lg: "30vw"}} minW={"20vw"} h={"fit-content"} >
           <Image src={project.img} alt="Image of Project Cover"/>
         </Box>

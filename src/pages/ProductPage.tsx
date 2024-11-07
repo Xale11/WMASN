@@ -8,10 +8,12 @@ import {
   Image,
   useToast,
   HStack,
+  Icon,
 } from "@chakra-ui/react";
 import { ContextAPI, ContextData } from "../context/ContextProvider";
 import { goToCheckout } from "../data/api";
 import { IoMdArrowBack } from "react-icons/io";
+import { FaBagShopping } from "react-icons/fa6";
 
 interface Props {
   item: Product;
@@ -92,20 +94,43 @@ const ProductPage = ({ item, onClose }: Props) => {
     fetchShipping()
   }, [])
 
-  const { addToBag } = useContext(ContextAPI) as ContextData;
+  const { addToBag, numItems } = useContext(ContextAPI) as ContextData;
 
   return (
     <VStack
       w={"100vw"}
       justify={"center"}
       fontFamily={"swis721-ex-bt"}>
-      <HStack onClick={onClose} position={"absolute"} top={"17%"} right={7} _hover={{textDecor: "underline"}}>
+      <HStack onClick={onClose} position={"absolute"} top={{base: "5em", md: "6em", lg: "7em"}} right={{base: 1, sm: 7}} _hover={{textDecor: "underline"}}>
         <IoMdArrowBack />
         <Text >Back To Store</Text>
+        <Box position={"relative"} mx={5}>
+          <Icon
+            fontSize={"2em"}
+            _hover={{ color: "#2F3F89" }}
+            right={"1em"}
+            as={FaBagShopping}
+          />
+          {numItems !== 0 && <VStack
+            top={"-2px"}
+            right={"-2px"}
+            position={"absolute"}
+            bg={"red"}
+            color={"white"}
+            textAlign={"center"}
+            borderRadius={"50%"}
+            fontSize={"0.5em"}
+            w={"2em"}
+            aspectRatio={"1/1"}
+            align={"center"}
+            justify={"center"}>
+            <Text>{numItems}</Text>
+          </VStack>}
+        </Box>
       </HStack>
-      <HStack w={"100%"}>
+      <HStack w={"100%"} flexWrap={"wrap"}>
         <VStack
-          w={{ base: "100%", sm: "50%" }}
+          w={{ base: "100%", sm: "48%" }}
           h={"100%"}
           bg={"white"}
           align={"end"}
@@ -117,22 +142,23 @@ const ProductPage = ({ item, onClose }: Props) => {
             alt="Image of product"
           />
         </VStack>
-        <VStack w={{ base: "100%", sm: "50%" }} align={"start"}>
+        <VStack w={{ base: "100%", sm: "48%" }} align={{base: "center", sm: "start"}}>
           <Heading
             w={"95%"}
             size={"lg"}
             fontFamily={"swis721-ex-bt-bold"} 
             color={"#2F3F89"}
+            textAlign={{base: "center", sm: "start"}}
             mt={{base: "1em", lg: "0em"}}>
             {item.name.toUpperCase()}
           </Heading>
           <Text color={"#2F3F89"} transform={"scaleY(1.25)"}>£{item.price}</Text>
           <Text color={"#2F3F89"}>{item.description}</Text>
-          <HStack w={"100%"} color={"white"}>
+          <HStack w={"100%"} color={"white"} flexWrap={"wrap"} justify={{base: "center", sm: "start"}}>
             <Box onClick={() => {addToBag(item); addedToBagToast();}} _hover={{textDecor: "underline"}} textAlign={"center"} py={3} w={"12em"} bg={"#2c2c2c"} >ADD TO BAG</Box>
             <Box onClick={buyNow} _hover={{textDecor: "underline"}} textAlign={"center"} py={3} w={"12em"} bg={"#2F3F89"}>BUY NOW</Box>
           </HStack>
-          {item.img2 && <HStack>
+          {item.img2 && <HStack flexWrap={"wrap"}>
             <Image onClick={() => {setMainImg(item.img1)}} cursor={"pointer"} src={item.img1} aspectRatio={"1/1"} w={"7em"} objectFit={"cover"}/>
             <Image onClick={() => {setMainImg(item.img2 ? item.img2 : "")}} cursor={"pointer"} src={item.img2} aspectRatio={"1/1"} w={"7em"} objectFit={"cover"}/>
           </HStack>}

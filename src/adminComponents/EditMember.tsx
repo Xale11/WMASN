@@ -25,6 +25,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
   const [xName, setXName] = useState<string>(member.contact.x.handle)
   const [xLink, setXLink] = useState<string>(member.contact.x.link)
   const [remove, setRemove] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const imgRef = useRef<HTMLInputElement>(null)
 
@@ -38,10 +39,12 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
   }
 
   const deleteMember  = async () => {
+    setLoading(true)
     const newArr = team.filter((_, i) => i !== index)
     console.log()
     const res = await deleteTeamMember(newArr, team[index], id as string)
     if (res === "success"){
+    setLoading(false)
       onClose()
       toast({
         status: "success",
@@ -51,6 +54,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
       })
       setTheTeam(newArr)
     } else {
+    setLoading(false)
       toast({
         status: "error",
         title: "Error Deleting Item. Try Again.",
@@ -62,6 +66,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
   }
 
   const editMember = async () => {
+    setLoading(true)
     if (!checkInputs()){
       toast({
         status: "error",
@@ -70,6 +75,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
         duration: 5000,
         position: "top"
       })
+    setLoading(false)
       return 
     }
     const newTeam = [...team]
@@ -100,6 +106,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
 
     const res = await editTeamMember(newTeam, id as string, imgRef.current?.files?.[0], index)
     if (res === "success"){
+    setLoading(false)
       onClose()
       toast({
         status: "success",
@@ -108,6 +115,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
         position: "top"
       })
     } else {
+    setLoading(false)
       toast({
         status: "error",
         title: "Error Adding Item. Try Again.",
@@ -171,7 +179,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
               <VStack mb={1}>
                 <Text>Are You Sure?</Text>
                 <ButtonGroup>
-                  <Button onClick={deleteMember}>Yes</Button>
+                  <Button isLoading={loading} onClick={deleteMember}>Yes</Button>
                   <PopoverCloseButton fontSize={"md"}>X</PopoverCloseButton>
                 </ButtonGroup>
               </VStack>
@@ -238,9 +246,9 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
                   <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">X Link</FormLabel>
                   <Input value={xLink} onChange={(e) => {setXLink(e.target.value)}} name="XLink" id="XLink" type={"text"} placeholder="Link to Account" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
-                <Box as="button" onClick={editMember} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                <Button isLoading={loading} onClick={editMember} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
                   <Text letterSpacing={"3px"}>SAVE</Text>
-                </Box>
+                </Button>
               </VStack>
             </VStack>
           </ModalBody>

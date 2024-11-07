@@ -21,7 +21,7 @@ const MeetTheTeam = ({theTeam}: Props) => {
     }
 
     return (
-        <HStack width={"100%"} justify={"center"} gap={10} color={"#2F3F89"}>
+        <HStack width={"100%"} justify={"center"} align={"start"} gap={10} color={"#2F3F89"}>
             <Image maxW={"40%"} maxH={"80vh"} src={profileImg}/>
             <VStack align={"start"} maxW={"45%"}>
                 <Heading size={"md"} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"}>Moyo Adebayo - Director</Heading>

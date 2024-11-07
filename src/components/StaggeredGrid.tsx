@@ -1,8 +1,5 @@
-import { Box, Button, ButtonGroup, HStack, Image, Text, VStack } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { paginateData } from '../util/Pagination'
-import { PageData } from '../pages/Gallery'
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
+import { Box, Button, ButtonGroup, HStack, Image, VStack } from '@chakra-ui/react'
+import { useState } from 'react'
 import { GalleryImage } from '../data/GalleryImgs'
 
 interface Props {
@@ -11,42 +8,12 @@ interface Props {
 
 const StaggeredGrid = ({imgs}: Props) => {
 
-  const [page, setPage] = useState<number>(1); // current page number
-  const [pageLimits, setPageLimits] = useState<PageData>({ start: 0, end: 8, maxPage: 1 });
-
-  const setPageView = (num: number) => {
-    const pageData = paginateData(num, 8, imgs.length);
-    setPage(num);
-    setPageLimits(pageData);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const nextPage = () => {
-    if (page === pageLimits.maxPage) {
-      return;
-    } else {
-      setPage((prev) => prev + 1);
-      setPageView(page + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (page === 1) {
-      return;
-    } else {
-      setPage((prev) => prev - 1);
-      setPageView(page - 1);
-    }
-  };
-
-  useEffect(() => {
-    setPageView(1)
-  }, [imgs])
+  const [numImgs, setNumImgs] = useState<number>(6)
 
   return (
     <HStack w={"100%"} justify={"center"} align={"start"} flexWrap={"wrap"} spacing={0}>
       <VStack display={{base: "none", md: "flex"}} w={{ base: "90%", md: "22%" }} spacing={"5em"}>
-        {imgs.slice(pageLimits.start, pageLimits.end).map((img, i) => {
+        {imgs.slice(0, numImgs).map((img, i) => {
           if (i % 4 == 0){
             return (<StaggeredGridItem img={img}/>)
           }
@@ -54,14 +21,14 @@ const StaggeredGrid = ({imgs}: Props) => {
         })}
       </VStack>
       <VStack display={{base: "none", md: "flex"}} w={{ base: "90%", md: "22%" }} spacing={"5em"} mt={"10em"}>
-        {imgs.slice(pageLimits.start, pageLimits.end).map((img, i) => {
+        {imgs.slice(0, numImgs).map((img, i) => {
           if ((i-2) % 4 == 0){
             return (<StaggeredGridItem img={img}/>)
           }
         })}
       </VStack>
       <VStack display={{base: "none", md: "flex"}} w={{ base: "90%", md: "22%" }} spacing={"5em"}>
-        {imgs.slice(pageLimits.start, pageLimits.end).map((img, i) => {
+        {imgs.slice(0, numImgs).map((img, i) => {
           if ((i-1) % 4 == 0){
             return (<StaggeredGridItem img={img}/>)
           }
@@ -69,33 +36,21 @@ const StaggeredGrid = ({imgs}: Props) => {
       </VStack>
       <VStack display={{base: "none", md: "flex"}} w={
         { base: "90%", md: "22%" }} spacing={"5em"} mt={"10em"}>
-        {imgs.slice(pageLimits.start, pageLimits.end).map((img, i) => {
+        {imgs.slice(0, numImgs).map((img, i) => {
           if ((i-3) % 4 == 0){
             return (<StaggeredGridItem img={img}/>)
           }
         })}
       </VStack>
       {/* Mobile View */}
-      <VStack display={{base: "flex", md: "none"}} w={{ base: "90%", md: "22%" }} spacing={"5em"}>
-        {imgs.slice(pageLimits.start, pageLimits.end).map((img) => {
+      <HStack display={{base: "flex", md: "none"}} w={{ base: "100%", md: "22%" }} justify={"center"} spacing={"5em"} flexWrap={"wrap"}>
+        {imgs.slice(0, numImgs).map((img) => {
           return (<StaggeredGridItem img={img}/>)
         })}
-      </VStack>
-      <ButtonGroup alignSelf={"center"} flexWrap={"wrap"}>
-        <Button size={"sm"} onClick={previousPage} leftIcon={<IoChevronBack />}>
-          <Text display={{base: "none", md: "inline"}}>Previous</Text>
-        </Button>
-        {Array.from({ length: pageLimits.maxPage }, (_, i) => i + 1).map((pageNum) => {
-          if (pageNum < page + 3 && pageNum > page - 3 && pageNum > 0 && pageNum <= pageLimits.maxPage)
-          return (
-            <Button size={"sm"} onClick={() => setPageView(pageNum)} bg={page === pageNum ? '#1F81B9' : "GrayText"}>
-              {pageNum}
-            </Button>
-          );
-        })}
-        <Button size={"sm"} onClick={nextPage} rightIcon={<IoChevronForward />}>
-        <Text display={{base: "none", md: "inline"}}>Next</Text>
-        </Button>
+      </HStack>
+      <ButtonGroup w={"100%"} mx={"auto"} mt={5} justifyContent={"center"}>
+        <Button borderRadius={0} display={numImgs >= imgs.length ? "none" : "block"} onClick={() => setNumImgs(num => num + 8)} bg={"#2F3F89"} color={"white"}>Show More</Button>
+        <Button borderRadius={0} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Scroll To Top</Button>
       </ButtonGroup>
     </HStack>
   )
@@ -110,7 +65,7 @@ export const StaggeredGridItem = ({img}: SubProps) => {
   // const [show, setShow] = useState<boolean>(false)
 
   return (
-    <VStack w={"100%"} aspectRatio={"1/1"} justify={"center"} spacing={0} cursor={"pointer"} overflow={"hidden"}>
+    <VStack w={{ base: "30%", md: "100%" }} aspectRatio={"1/1"} justify={"center"} spacing={0} cursor={"pointer"} overflow={"hidden"}>
       <Box w={"100%"} h={"100%"}>
         <Image loading='lazy' src={img.src} w={"100%"} h={"100%"} objectFit={"cover"} transition={"all 300ms ease-in-out"} alt='Image of an artefact'/>
       </Box>

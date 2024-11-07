@@ -14,9 +14,9 @@ const ProjectCard = ({project} : Props) => {
     //console.log(project)
 
   return (
-    <Card onClick={onOpen} borderRadius={0} transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.0)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm: "49.5%", lg: "90%"}} aspectRatio={"3 / 0.5"} backgroundImage={project.img} backgroundSize={"cover"} backgroundRepeat={"no-repeat"} backgroundPosition={"center"}>
+    <Card onClick={onOpen} borderRadius={0} transition={"300ms all ease-in-out"} _hover={{boxShadow: "0px 4px 20px rgba(0, 0, 0, 1)", cursor: "pointer"}} boxShadow={"0px 4px 8px rgba(0, 0, 0, 0.0)"} display={"flex"} justifyContent={"end"} position={"relative"} w={{base: "100%", sm:  "90%"}} aspectRatio={{base: "3/1.5", md: "3 / 1", xl: "3 / 0.5"}} backgroundImage={project.img} backgroundSize={"cover"} backgroundRepeat={"no-repeat"} backgroundPosition={"center"}>
         <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"100%"} height={"45%"} bg={"#2F3F89"} opacity={"95%"} _hover={{h: "55%"}} transition={"all 300ms ease-in-out"}>
-            <Heading w={"90%"} size={"md"} opacity={"100%"} color={"white"} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"}>What Makes a Space Nigeria? - Home Edition</Heading>
+            <Heading w={"90%"} size={{base: "xs", sm: "md"}} opacity={"100%"} color={"white"} fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"}>What Makes a Space Nigeria? - Home Edition</Heading>
         </Box>
         <Modal isOpen={isOpen} onClose={onClose} size={"full"}>
           <ModalOverlay/>

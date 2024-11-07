@@ -13,7 +13,7 @@
   overflow-x: hidden;
 }
 
-@font-face {
+/* @font-face {
   font-family:"Roboto";
   src: url(./fonts/Roboto-Regular.ttf);
   font-style: normal;
@@ -29,7 +29,7 @@
   font-family:"Roboto-Light";
   src: url(./fonts/Roboto-Light.ttf);
   font-style: normal;
-}
+} */
 
 @font-face {
   font-family:"swis721-ex-bt";

@@ -1,4 +1,4 @@
-import { Box, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
+import { Box, Button, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalContent, ModalOverlay, Text, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import { addTeamMember, TeamMember } from '../data/Team'
 import { useRef, useState } from 'react'
 import EditMember from './EditMember'
@@ -22,6 +22,7 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
   const [instagramLink, setInstagramLink] = useState<string>("")
   const [xName, setXName] = useState<string>("")
   const [xLink, setXLink] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>(false)
 
   const imgRef = useRef<HTMLInputElement>(null)
 
@@ -35,6 +36,7 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
   }
 
   const addNewMember = async () => {
+    setLoading(true)
     if (!checkInputs()){
       toast({
         status: "error",
@@ -43,6 +45,7 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
         duration: 5000,
         position: "top"
       })
+      setLoading(false)
       return 
     }
     const newMember = {
@@ -70,6 +73,7 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
     }
     const res = await addTeamMember(theTeam, newMember, id as string, imgRef.current?.files?.[0])
     if (res === "success"){
+      setLoading(false)
       onClose()
       toast({
         status: "success",
@@ -78,6 +82,7 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
         position: "top"
       })
     } else {
+      setLoading(false)
       toast({
         status: "error",
         title: "Error Adding Item. Try Again.",
@@ -152,9 +157,9 @@ const OurTeamView = ({theTeam, setTheTeam, id}: Props) => {
                   <FormLabel m={"0px"} color={"#2c2c2c"} letterSpacing={"3px"} htmlFor="message">X Link</FormLabel>
                   <Input value={xLink} onChange={(e) => {setXLink(e.target.value)}} name="XLink" id="XLink" type={"text"} placeholder="Link to Account" border={"0px"} outline={"none"} padding={"0px"} m={"0px"} _focus={{boxShadow: "0px 0px 0px black"}} isRequired/>
                 </Box>
-                <Box as="button" onClick={addNewMember} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
+                <Button isLoading={loading} onClick={addNewMember} borderRadius={"0em"} bg={"#2c2c2c"} display={"flex"} alignItems={"center"} gap={"0.5em"} justifyContent={"center"} padding={"1.25em 1.75em"} color={"white"} transition={"all 300ms ease-in-out"} _hover={{padding: "1.25em 2.5em"}}>
                   <Text letterSpacing={"3px"}>SAVE</Text>
-                </Box>
+                </Button>
               </VStack>
             </VStack>
           </ModalBody>

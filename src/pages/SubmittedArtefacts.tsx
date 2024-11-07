@@ -44,7 +44,7 @@ const SubmittedArtefacts = () => {
         </Helmet>
         <Navbar/>
         <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
-          <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"}>SUBMITTED ARTEFACTS</Heading>
+          <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} textAlign={"center"} letterSpacing={"2px"}>SUBMITTED ARTEFACTS</Heading>
           {/* todo: add better desc */}
           <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>A collection of all items loaned to us
           by Nigerian families, for the sake of the exhibition</Text>

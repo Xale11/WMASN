@@ -77,6 +77,7 @@ const Bag = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"start"}
+      fontFamily={"swis721-ex-bt"}
       gap={"1em"}>
       <Helmet>
         <meta charSet="UTF-8" />
@@ -99,9 +100,10 @@ const Bag = () => {
           align={"start"}
           spacing={"0.5em"}>
           <Heading
-          
-            letterSpacing={"5px"}
-            color={"#2c2c2c"}>
+            fontFamily={"swis721-ex-bt"} 
+            transform={"scaleY(1.25)"}
+            letterSpacing={"2px"}
+            color={"#2F3F89"}>
             BAG
           </Heading>
           <Box width={"100%"} h={"1px"} bg={"#cfcfcf"}></Box>
@@ -115,9 +117,10 @@ const Bag = () => {
           align={"start"}
           spacing={"0.5em"}>
           <Heading
-          
-            letterSpacing={"5px"}
-            color={"#2c2c2c"}>
+            fontFamily={"swis721-ex-bt"} 
+            transform={"scaleY(1.25)"}
+            letterSpacing={"2px"}
+            color={"#2F3F89"}>
             SUMMARY
           </Heading>
           <Box width={"100%"} h={"1px"} bg={"#cfcfcf"}></Box>

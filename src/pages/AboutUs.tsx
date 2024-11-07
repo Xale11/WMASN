@@ -63,7 +63,7 @@ const AboutUs = () => {
             
             <VStack w={"100%"} justify={"center"} m={"1.4em 0em"} spacing={6}>
                 <Heading fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} color={"#2F3F89"} letterSpacing={"2px"}>ABOUT US</Heading>
-                <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>{subtitle}.</Text>
+                <Text fontFamily={"swis721-ex-bt"} transform={"scaleY(1.25)"} textAlign={"center"} w={{base: "90%"}}>{subtitle}</Text>
             </VStack>
 
             <HStack justify={"center"} w={"100%"} marginBottom={"2em"} color={"#2F3F89"} p={"2em 0em"} position={"relative"}>

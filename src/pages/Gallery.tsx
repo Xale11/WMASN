@@ -79,8 +79,8 @@ const Gallery = () => {
         </Masonry>
       </ResponsiveMasonry>
       <ButtonGroup mx={"auto"}>
-        <Button display={numImgs > images.length ? "none" : "block"} onClick={() => setNumImgs(num => num + 10)} bg={"#2F3F89"} color={"white"}>Show More</Button>
-        <Button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Scroll To Top</Button>
+        <Button borderRadius={0} display={numImgs >= images.length ? "none" : "block"} onClick={() => setNumImgs(num => num + 10)} bg={"#2F3F89"} color={"white"}>Show More</Button>
+        <Button borderRadius={0} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Scroll To Top</Button>
       </ButtonGroup>
       <Modal onClose={onClose} isOpen={isOpen} isCentered={true} size={"xs"}>
           <ModalOverlay/>

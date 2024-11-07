@@ -25,15 +25,14 @@ const Navbar = () => {
   return (
     <Box w={"100vw"} h={{base: "4em", md: "5em", lg: "6em"}} bg={"#2F3F89"} display={"flex"} alignItems={"center"} fontFamily={"swis721-ex-bt"} position={"relative"} zIndex={3}>
         <Box onClick={() => {navigate("/")}} width={{base: "80%", sm: "25%", lg: "20%"}} h={"100%"} cursor={"pointer"} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-            <Image src={Logo} alt='Logo' objectFit='contain' w={{base: "250px", sm: "150px", lg: "250px"}}/>
+            <Image src={Logo} alt='Logo' objectFit='contain' w={{base: "200px", sm: "150px", lg: "175px"}}/>
         </Box>
         <Box width={{base: "20%", sm: "75%", lg: "80%"}}  h={"100%"} color={"white"} display={"flex"} alignItems={"center"} justifyContent={"space-around"} letterSpacing={"4px"}>
             <Icon as={IoMenu} onClick={() => {onOpen()}} fontSize={"2.5em"} display={{base: "inline", sm: "none"}}/>
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/")} padding={"0.5em"} borderTop={url === "/" ? "2px solid white": ""} borderBottom={url === "/" ? "2px solid white": ""}>MAIN</Text>
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/gallery")} padding={"0.5em"} borderTop={url === "/gallery" ? "2px solid white": ""} borderBottom={url === "/gallery" ? "2px solid white": ""}>GALLERY</Text>
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer", borderY: "2px solid white"}} onClick={() => navigate("/gallery")} padding={"0.5em"} borderTop={url === "/gallery" ? "2px solid white": ""} borderBottom={url === "/gallery" ? "2px solid white": ""}>GALLERY</Text>
             <Popover>
                 <PopoverTrigger>
-                    <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}}  padding={"0.5em"} borderTop={url?.includes("/artefacts") ? "2px solid white": ""} borderBottom={url?.includes("/artefacts") ? "2px solid white": ""}>ARTEFACTS</Text>
+                    <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer", borderY: "2px solid white"}}  padding={"0.5em"} borderTop={url?.includes("/artefacts") ? "2px solid white": ""} borderBottom={url?.includes("/artefacts") ? "2px solid white": ""}>ARTEFACTS</Text>
                 </PopoverTrigger>
                 <PopoverContent border={"0px"} bg={"#2F3F89"}>
                     <PopoverBody bg={"#2F3F89"}  display={"flex"} flexDirection={"column"} alignItems={"center"} gap={"0.5em"}>
@@ -44,9 +43,9 @@ const Navbar = () => {
                 </PopoverContent>
             </Popover>
             
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/about")} padding={"0.5em"} borderTop={url === "/about" ? "2px solid white": ""} borderBottom={url === "/about" ? "2px solid white": ""}>ABOUT US</Text>
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/projects")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>PROJECTS</Text>
-            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer"}} onClick={() => navigate("/store")} padding={"0.5em"} borderTop={url === "/store" ? "2px solid white": ""} borderBottom={url === "/store" ? "2px solid white": ""}>STORE</Text>
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer", borderY: "2px solid white"}} onClick={() => navigate("/about")} padding={"0.5em"} borderTop={url === "/about" ? "2px solid white": ""} borderBottom={url === "/about" ? "2px solid white": ""}>ABOUT US</Text>
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer", borderY: "2px solid white"}} onClick={() => navigate("/projects")} padding={"0.5em"} borderTop={url === "/projects" ? "2px solid white": ""} borderBottom={url === "/projects" ? "2px solid white": ""}>PROJECTS</Text>
+            <Text display={{base: "none", sm: "inline"}} fontSize={{base: "auto", sm: "0.5em", md: "0.75em", lg: "1em"}} _hover={{cursor: "pointer", borderY: "2px solid white"}} onClick={() => navigate("/store")} padding={"0.5em"} borderTop={url === "/store" ? "2px solid white": ""} borderBottom={url === "/store" ? "2px solid white": ""}>STORE</Text>
         </Box>
         {/* Mobile View */}
         <Modal isOpen={isOpen} onClose={onClose}>
