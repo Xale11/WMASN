@@ -255,6 +255,7 @@ const EditMember = ({team, member, index, id, setTheTeam}: Props) => {
         </ModalContent>
       </Modal>
     </VStack>
+    
   )
 }
 

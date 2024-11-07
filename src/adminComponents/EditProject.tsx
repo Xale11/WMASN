@@ -10,7 +10,7 @@ interface Props {
   index: number
 }
 
-const EditProject = ({project, index}: Props) => {
+const EditProject = ({project}: Props) => {
 
   const [name, setName] = useState<string>(project.name)
   const [description, setDescription] = useState<string>(project.description)
